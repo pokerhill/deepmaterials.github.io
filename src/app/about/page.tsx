@@ -1,0 +1,313 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+
+/* ------------------------------------------------------------------ */
+/*  Shared office data                                                 */
+/* ------------------------------------------------------------------ */
+
+const offices = [
+  {
+    location: "USA HQ",
+    address: "20115 Orchard Meadow Dr. Saratoga, USA",
+    phone: "+1 (408) 464-8007",
+    flag: "🇺🇸",
+  },
+  {
+    location: "China",
+    address:
+      "No. 68, Lianfeng Road, Changshu, Suzhou, Jiangsu, China",
+    phone: "+86 (199) 6284-6991",
+    flag: "🇨🇳",
+  },
+  {
+    location: "Taiwan",
+    address:
+      "12F.-2, No. 162, Sec. 4, Zhongxiao E. Rd., Da'an Dist., Taipei City",
+    phone: "+886 921 786 240",
+    flag: "🇹🇼",
+  },
+  {
+    location: "India",
+    address:
+      "1/1, Shivanand Marg, Malviya Nagar, Jaipur, Rajasthan, India",
+    phone: "+91 77039 11180",
+    flag: "🇮🇳",
+  },
+] as const;
+
+/* ------------------------------------------------------------------ */
+/*  Animation helpers                                                  */
+/* ------------------------------------------------------------------ */
+
+function FadeInSection({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      transition={{ duration: 0.7, delay, ease: "easeOut" }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Page                                                               */
+/* ------------------------------------------------------------------ */
+
+export default function AboutPage() {
+  return (
+    <>
+      {/* ---- Hero ---- */}
+      <section className="relative pt-32 pb-20 overflow-hidden bg-dm-midnight">
+        <div className="absolute inset-0">
+          <img
+            src="/images/hero/testing-lab.jpg"
+            alt=""
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-dm-midnight/70" />
+        </div>
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at 40% 40%, rgba(0,180,216,0.09) 0%, transparent 60%)",
+          }}
+        />
+
+        <motion.div
+          className="relative z-10 max-w-4xl mx-auto px-6 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+            <span className="text-gradient">About Deep Material</span>
+          </h1>
+          <p className="mt-6 text-lg sm:text-xl text-dm-gray-light max-w-2xl mx-auto leading-relaxed">
+            Pioneering advanced thermal management solutions for the
+            world&rsquo;s most demanding industries since 2019.
+          </p>
+        </motion.div>
+      </section>
+
+      {/* ---- Company Story ---- */}
+      <section className="py-20 bg-dm-navy">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <FadeInSection>
+              <h2 className="text-3xl sm:text-4xl font-bold text-dm-white mb-6">
+                Our Story
+              </h2>
+              <p className="text-dm-gray-light text-lg leading-relaxed">
+                Deep Material has been at the forefront of thermal management
+                solutions since 2019. Our products are tailored to manage heat
+                dissipation in modern electronic devices, ensuring optimal
+                performance and longevity. We provide a comprehensive range of
+                thermal management materials designed for various industrial
+                applications, ranging from consumer electronics to automotive,
+                aerospace, and telecommunications.
+              </p>
+            </FadeInSection>
+            <FadeInSection delay={0.2}>
+              <img
+                src="/images/hero/about.jpg"
+                alt="Deep Material facility"
+                className="rounded-2xl w-full h-80 object-cover shadow-lg shadow-dm-accent/10"
+              />
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Mission & Vision ---- */}
+      <section className="py-20 bg-dm-midnight">
+        <div className="max-w-6xl mx-auto px-6">
+          <FadeInSection className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold text-dm-white">
+              Mission &amp; Vision
+            </h2>
+          </FadeInSection>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <FadeInSection delay={0.1}>
+              <div className="glass glow-border hover-glow rounded-2xl p-8 h-full">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="flex items-center justify-center w-10 h-10 rounded-lg bg-dm-accent/10 text-dm-accent">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-6 h-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
+                    </svg>
+                  </span>
+                  <h3 className="text-xl font-semibold text-dm-white">
+                    Our Mission
+                  </h3>
+                </div>
+                <p className="text-dm-gray-light leading-relaxed">
+                  To furnish world-class thermal management solutions that
+                  enable our customers to excel in their industries. We aspire
+                  to become the most trusted partner for innovative,
+                  eco-friendly solutions.
+                </p>
+              </div>
+            </FadeInSection>
+
+            <FadeInSection delay={0.25}>
+              <div className="glass glow-border hover-glow rounded-2xl p-8 h-full">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="flex items-center justify-center w-10 h-10 rounded-lg bg-dm-accent/10 text-dm-accent">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-6 h-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      />
+                    </svg>
+                  </span>
+                  <h3 className="text-xl font-semibold text-dm-white">
+                    Our Vision
+                  </h3>
+                </div>
+                <p className="text-dm-gray-light leading-relaxed">
+                  To lead the global thermal solutions market by consistently
+                  pushing the boundaries of technology, creating products that
+                  minimize environmental impact while maximizing device
+                  performance.
+                </p>
+              </div>
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Sustainability ---- */}
+      <section className="py-20 bg-dm-navy">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <FadeInSection delay={0.1}>
+              <img
+                src="/images/hero/sustain.jpg"
+                alt="Sustainability at Deep Material"
+                className="rounded-2xl w-full h-80 object-cover shadow-lg shadow-dm-accent/10"
+              />
+            </FadeInSection>
+            <FadeInSection delay={0.2}>
+              <h2 className="text-3xl sm:text-4xl font-bold text-dm-white mb-6">
+                <span className="text-gradient">Sustainability</span>
+              </h2>
+              <p className="text-dm-gray-light text-lg leading-relaxed">
+                Sustainability is a core value at Deep Material. We believe that
+                innovation and environmental responsibility go hand in hand. Our
+                manufacturing focuses on reducing waste, minimizing energy usage,
+                and utilizing recyclable materials. Our products are non-toxic,
+                recyclable, and do not contribute to environmental degradation. We
+                invest in green technologies to reduce our carbon footprint.
+              </p>
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Work Environment ---- */}
+      <section className="py-20 bg-dm-midnight">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <FadeInSection>
+              <h2 className="text-3xl sm:text-4xl font-bold text-dm-white mb-6">
+                Work Environment
+              </h2>
+              <p className="text-dm-gray-light text-lg leading-relaxed">
+                Deep Material fosters a dynamic, collaborative, and supportive work
+                environment. We believe a positive work culture is essential for
+                innovation and productivity. Diversity is celebrated and every
+                employee feels valued. We offer flexible work arrangements, health
+                benefits, and wellness initiatives.
+              </p>
+            </FadeInSection>
+            <FadeInSection delay={0.2}>
+              <img
+                src="/images/hero/work.jpg"
+                alt="Deep Material work environment"
+                className="rounded-2xl w-full h-80 object-cover shadow-lg shadow-dm-accent/10"
+              />
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Global Presence ---- */}
+      <section className="py-20 bg-dm-navy">
+        <div className="max-w-6xl mx-auto px-6">
+          <FadeInSection className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold text-dm-white">
+              Global Presence
+            </h2>
+            <p className="mt-4 text-dm-gray-light text-lg max-w-2xl mx-auto">
+              Serving customers across the globe from four strategic locations.
+            </p>
+          </FadeInSection>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {offices.map((office, idx) => (
+              <FadeInSection key={office.location} delay={idx * 0.1}>
+                <div className="glass glow-border hover-glow rounded-2xl p-6 h-full flex flex-col">
+                  <span className="text-3xl mb-3">{office.flag}</span>
+                  <h3 className="text-lg font-semibold text-dm-white mb-2">
+                    {office.location}
+                  </h3>
+                  <p className="text-dm-gray text-sm leading-relaxed flex-1">
+                    {office.address}
+                  </p>
+                  <a
+                    href={`tel:${office.phone.replace(/\s/g, "")}`}
+                    className="mt-4 text-dm-accent text-sm hover:text-dm-accent-light transition-colors"
+                  >
+                    {office.phone}
+                  </a>
+                </div>
+              </FadeInSection>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
