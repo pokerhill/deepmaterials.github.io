@@ -21,17 +21,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      # Build the static site inside the same Docker image contributors use
+      # locally. `--target export` is a FROM-scratch stage in the Dockerfile
+      # whose only content is /app/out, so buildx writes it straight to ./out.
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build static export via Docker
+        uses: docker/build-push-action@v6
         with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
+          context: .
+          target: export
+          outputs: type=local,dest=./out
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -1,0 +1,52 @@
+# Three workflows:
+#   docker compose up dev              -> hot-reload dev server on :3000
+#   docker compose run --rm build      -> produces ./out (static export)
+#   docker compose up preview          -> serves ./out via nginx on :8080
+
+services:
+  # Hot-reload dev server. Source is bind-mounted; node_modules and .next
+  # stay inside the container so platform-native binaries are never overwritten
+  # by the host's (matters on Apple Silicon vs. linux/amd64).
+  dev:
+    build:
+      context: .
+      target: dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NEXT_TELEMETRY_DISABLED=1
+      - CHOKIDAR_USEPOLLING=true   # reliable file-watching on macOS/Windows mounts
+
+  # One-shot build: runs `npm run build` and writes the static export to
+  # ./out on the host via bind mount. Use:
+  #   docker compose run --rm build
+  #
+  # Note: we mount ./out to /export (NOT /app/out) because Next's static
+  # export rmdirs /app/out during finalization — which fails on a bind mount.
+  # The build writes to the container-local /app/out, then we sync to /export.
+  build:
+    build:
+      context: .
+      target: builder
+    volumes:
+      - ./out:/export
+    environment:
+      - NEXT_TELEMETRY_DISABLED=1
+    command: >
+      sh -c "npm run build &&
+             find /export -mindepth 1 -delete &&
+             cp -a /app/out/. /export/"
+
+  # Production preview: serves the baked static site (mimics GitHub Pages).
+  # The site is baked into the image at build time, so this does NOT depend
+  # on ./out existing on the host.
+  preview:
+    build:
+      context: .
+      target: preview
+    ports:
+      - "8080:8080"
