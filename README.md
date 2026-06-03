@@ -4,9 +4,84 @@ Marketing site for **Deep Material** — thermal interface materials (gap pads,
 thermal grease, liquid gap fillers, etc.). Built with [Next.js 14](https://nextjs.org)
 (App Router) + Tailwind, statically exported, and published to GitHub Pages.
 
-- **Live:** https://deepmaterials.github.io
+- **Repo:** https://github.com/pokerhill/deepmaterials.github.io
+- **Live:** https://pokerhill.github.io/deepmaterials.github.io/ (or your custom domain — see [Custom domain](#custom-domain))
 - **Stack:** Next.js 14 · React 18 · TypeScript · Tailwind · framer-motion
 - **Output:** `next build` with `output: 'export'` → static HTML in `./out`
+
+---
+
+## First-time setup on a new machine
+
+You need three things on the box: **Git**, **Docker Desktop**, and a way to
+authenticate with GitHub. The two short paths:
+
+### Option A — HTTPS via `gh` (easiest, recommended)
+
+```bash
+# 1. Install prerequisites (macOS via Homebrew shown; adjust per OS)
+brew install git gh
+brew install --cask docker
+open -a Docker          # let Docker Desktop finish starting
+
+# 2. Authenticate to GitHub (browser-based; handles both `gh` and `git push`)
+gh auth login           # choose: GitHub.com → HTTPS → Login with web browser
+
+# 3. Clone over HTTPS (gh stores credentials so pushes Just Work)
+git clone https://github.com/pokerhill/deepmaterials.github.io.git
+cd deepmaterials.github.io
+
+# 4. Identify yourself for commits
+git config user.name  "Your Name"
+git config user.email "you@example.com"
+
+# 5. Verify the toolchain works end to end
+docker compose up dev   # http://localhost:3000
+```
+
+### Option B — SSH (matches this machine's setup)
+
+```bash
+# 1. Prerequisites as above (git + Docker Desktop)
+brew install git
+brew install --cask docker && open -a Docker
+
+# 2. Generate an SSH key if you don't already have one
+ssh-keygen -t ed25519 -C "you@example.com"           # accept defaults
+eval "$(ssh-agent -s)"
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519       # macOS keychain
+cat ~/.ssh/id_ed25519.pub                            # copy this output
+
+# 3. Add the public key at https://github.com/settings/ssh/new
+
+# 4. Verify SSH reaches GitHub — should print "Hi <user>! You've successfully authenticated"
+ssh -T git@github.com
+
+# 5. Clone over SSH
+git clone git@github.com:pokerhill/deepmaterials.github.io.git
+cd deepmaterials.github.io
+git config user.name  "Your Name"
+git config user.email "you@example.com"
+
+# 6. Verify the toolchain
+docker compose up dev
+```
+
+### Troubleshooting GitHub connectivity
+
+- **`Permission denied (publickey)`** — your SSH key isn't on GitHub (or
+  isn't loaded). Re-run `ssh-add --apple-use-keychain ~/.ssh/id_ed25519`
+  and re-check it's pasted at https://github.com/settings/keys.
+- **`fatal: could not read Username for 'https://github.com'`** — you
+  cloned over HTTPS without `gh auth login`. Either run that, or switch
+  the remote to SSH:
+  `git remote set-url origin git@github.com:pokerhill/deepmaterials.github.io.git`
+- **Corporate proxy / firewall blocking port 22** — switch from SSH to
+  HTTPS (Option A); GitHub also offers SSH over port 443 via
+  `ssh.github.com:443` if you must keep SSH.
+- **`gh auth login` fails behind a captive portal / VPN** — use a
+  [Personal Access Token](https://github.com/settings/tokens) instead and
+  paste it when `git push` prompts for a password.
 
 ---
 
