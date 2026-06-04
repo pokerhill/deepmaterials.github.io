@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Deep Material — Thermal Management Solutions",
+  title: "Deep Materials - Thermal Management Solutions",
   description:
     "Your trusted thermal solution partner. Advanced thermal interface materials for consumer electronics, automotive, aerospace, data centers, and telecommunications since 2019.",
   keywords: [
@@ -15,10 +15,10 @@ export const metadata: Metadata = {
     "TIM",
     "heat dissipation",
     "electronics cooling",
-    "Deep Material",
+    "Deep Materials",
   ],
   openGraph: {
-    title: "Deep Material — Thermal Management Solutions",
+    title: "Deep Materials - Thermal Management Solutions",
     description:
       "Advanced thermal interface materials engineered for performance. Gap pads, thermal grease, liquid gap fillers, and more.",
     type: "website",

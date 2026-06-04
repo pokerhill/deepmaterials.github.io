@@ -25,11 +25,11 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 flex items-center gap-3">
+          <Link href="/" className="flex-shrink-0 flex h-full items-center gap-3">
             <img
-              src="/images/hero/logo.jpg"
-              alt="Deep Material"
-              className="h-9 w-auto"
+              src="/images/hero/logo-transparent.png"
+              alt="Deep Materials"
+              className="h-[90%] w-auto"
             />
           </Link>
 

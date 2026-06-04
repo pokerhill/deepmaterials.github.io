@@ -26,7 +26,7 @@ services:
   #   docker compose run --rm build
   #
   # Note: we mount ./out to /export (NOT /app/out) because Next's static
-  # export rmdirs /app/out during finalization — which fails on a bind mount.
+  # export rmdirs /app/out during finalization - which fails on a bind mount.
   # The build writes to the container-local /app/out, then we sync to /export.
   build:
     build:

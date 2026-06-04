@@ -1,4 +1,4 @@
-// Strict email validation — checks format and common disposable domains
+// Strict email validation - checks format and common disposable domains
 const DISPOSABLE_DOMAINS = new Set([
   'mailinator.com',
   'guerrillamail.com',

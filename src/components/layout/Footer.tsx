@@ -10,6 +10,7 @@ const PRODUCT_LINKS = [
 ] as const;
 
 const INDUSTRY_LINKS = [
+  { href: "/applications", label: "Computing" },
   { href: "/applications", label: "Consumer Electronics" },
   { href: "/applications", label: "Automotive" },
   { href: "/applications", label: "Telecommunications" },
@@ -17,7 +18,7 @@ const INDUSTRY_LINKS = [
 ] as const;
 
 const OFFICES = [
-  { region: "USA", city: "Saratoga" },
+  { region: "USA", city: "Silicon Valley, Texas" },
   { region: "China", city: "Suzhou" },
   { region: "Taiwan", city: "Taipei" },
   { region: "India", city: "Jaipur" },
@@ -26,13 +27,13 @@ const OFFICES = [
 export default function Footer() {
   return (
     <footer className="bg-dm-midnight border-t border-dm-accent/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-gradient">Deep Material</h3>
+            <h3 className="text-xl font-bold text-gradient">Deep Materials</h3>
             <p className="text-sm font-medium text-dm-accent-light">
-              Your Trusted Thermal Solution Partner
+              Your trusted thermal solution partner
             </p>
             <p className="text-sm text-dm-gray leading-relaxed">
               Delivering advanced thermal management solutions for electronics,
@@ -110,7 +111,7 @@ export default function Footer() {
                 {OFFICES.map(({ region, city }) => (
                   <li key={region} className="text-xs text-dm-gray">
                     <span className="text-dm-gray-light">{region}</span>
-                    {" — "}
+                    {" - "}
                     {city}
                   </li>
                 ))}
@@ -124,7 +125,7 @@ export default function Footer() {
       <div className="border-t border-dm-slate/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-dm-gray">
-            &copy; 2025 Deep Material. All rights reserved.
+            &copy; 2026 Deep Materials. All rights reserved.
           </p>
           <div className="flex items-center gap-4 text-xs text-dm-gray">
             <Link

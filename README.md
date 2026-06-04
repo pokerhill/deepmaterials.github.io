@@ -1,11 +1,11 @@
 # deepmaterials.github.io
 
-Marketing site for **Deep Material** — thermal interface materials (gap pads,
+Marketing site for **Deep Materials** - thermal interface materials (gap pads,
 thermal grease, liquid gap fillers, etc.). Built with [Next.js 14](https://nextjs.org)
 (App Router) + Tailwind, statically exported, and published to GitHub Pages.
 
 - **Repo:** https://github.com/pokerhill/deepmaterials.github.io
-- **Live:** https://pokerhill.github.io/deepmaterials.github.io/ (or your custom domain — see [Custom domain](#custom-domain))
+- **Live:** https://pokerhill.github.io/deepmaterials.github.io/ (or your custom domain - see [Custom domain](#custom-domain))
 - **Stack:** Next.js 14 · React 18 · TypeScript · Tailwind · framer-motion
 - **Output:** `next build` with `output: 'export'` → static HTML in `./out`
 
@@ -16,7 +16,7 @@ thermal grease, liquid gap fillers, etc.). Built with [Next.js 14](https://nextj
 You need three things on the box: **Git**, **Docker Desktop**, and a way to
 authenticate with GitHub. The two short paths:
 
-### Option A — HTTPS via `gh` (easiest, recommended)
+### Option A - HTTPS via `gh` (easiest, recommended)
 
 ```bash
 # 1. Install prerequisites (macOS via Homebrew shown; adjust per OS)
@@ -39,7 +39,7 @@ git config user.email "you@example.com"
 docker compose up dev   # http://localhost:3000
 ```
 
-### Option B — SSH (matches this machine's setup)
+### Option B - SSH (matches this machine's setup)
 
 ```bash
 # 1. Prerequisites as above (git + Docker Desktop)
@@ -54,7 +54,7 @@ cat ~/.ssh/id_ed25519.pub                            # copy this output
 
 # 3. Add the public key at https://github.com/settings/ssh/new
 
-# 4. Verify SSH reaches GitHub — should print "Hi <user>! You've successfully authenticated"
+# 4. Verify SSH reaches GitHub - should print "Hi <user>! You've successfully authenticated"
 ssh -T git@github.com
 
 # 5. Clone over SSH
@@ -69,30 +69,30 @@ docker compose up dev
 
 ### Troubleshooting GitHub connectivity
 
-- **`Permission denied (publickey)`** — your SSH key isn't on GitHub (or
+- **`Permission denied (publickey)`** - your SSH key isn't on GitHub (or
   isn't loaded). Re-run `ssh-add --apple-use-keychain ~/.ssh/id_ed25519`
   and re-check it's pasted at https://github.com/settings/keys.
-- **`fatal: could not read Username for 'https://github.com'`** — you
+- **`fatal: could not read Username for 'https://github.com'`** - you
   cloned over HTTPS without `gh auth login`. Either run that, or switch
   the remote to SSH:
   `git remote set-url origin git@github.com:pokerhill/deepmaterials.github.io.git`
-- **Corporate proxy / firewall blocking port 22** — switch from SSH to
+- **Corporate proxy / firewall blocking port 22** - switch from SSH to
   HTTPS (Option A); GitHub also offers SSH over port 443 via
   `ssh.github.com:443` if you must keep SSH.
-- **`gh auth login` fails behind a captive portal / VPN** — use a
+- **`gh auth login` fails behind a captive portal / VPN** - use a
   [Personal Access Token](https://github.com/settings/tokens) instead and
   paste it when `git push` prompts for a password.
 
 ---
 
-## Quickstart (Docker — recommended)
+## Quickstart (Docker - recommended)
 
 The only requirement is [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 (or any Docker engine with Compose v2). Everyone gets the same Node version,
 the same lockfile resolution, and the same build output as CI.
 
 ```bash
-# 1. Dev server with hot reload — http://localhost:3000
+# 1. Dev server with hot reload - http://localhost:3000
 docker compose up dev
 
 # 2. Build the static site into ./out (same command CI runs)
@@ -111,7 +111,7 @@ First run pulls the Node and nginx base images and installs dependencies
 `docker compose up dev` bind-mounts the repo into the container, so edits in
 [src/](src/) reload in the browser immediately. `node_modules` and `.next`
 live inside the container (named volumes) so the host's architecture never
-clashes with the container's — relevant on Apple Silicon.
+clashes with the container's - relevant on Apple Silicon.
 
 If you add or remove a dependency, rebuild the dev image so the new
 `package-lock.json` is baked in:
@@ -147,7 +147,7 @@ prints a link to the running deploy. The push triggers
 [.github/workflows/deploy.yml](.github/workflows/deploy.yml), which:
 
 1. Builds the `export` stage of the [Dockerfile](Dockerfile) via `docker buildx`
-   — **the exact same image used locally**.
+   - **the exact same image used locally**.
 2. Extracts `/app/out` straight to `./out` via `--output type=local`.
 3. Uploads `./out` as a Pages artifact and deploys to GitHub Pages.
 
@@ -155,14 +155,14 @@ The site is live ~30–90 s after the workflow finishes. To redeploy without
 a new commit, click **Run workflow** on the deploy action (it has
 `workflow_dispatch` enabled), or run `git commit --allow-empty -m "redeploy" && npm run deploy`.
 
-Working on a branch? Open a PR into `main` and merge it — the merge commit
+Working on a branch? Open a PR into `main` and merge it - the merge commit
 on `main` is what kicks off the deploy. `npm run deploy` is for shipping
 from your local `main`.
 
 ### First-time GitHub Pages setup
 
 In repo **Settings → Pages**, set **Source** to **GitHub Actions**. No
-branch selection needed — the workflow publishes the artifact directly.
+branch selection needed - the workflow publishes the artifact directly.
 
 ### Custom domain
 
@@ -199,9 +199,9 @@ docker-compose.yml  dev / build / preview services
 
 ## Troubleshooting
 
-- **Port 3000 already in use** — something else is on it (often a stray
+- **Port 3000 already in use** - something else is on it (often a stray
   `next dev`). `lsof -i :3000` to find it, then kill the PID.
-- **Edits not hot-reloading on macOS/Windows** — already handled via
+- **Edits not hot-reloading on macOS/Windows** - already handled via
   `CHOKIDAR_USEPOLLING=true` in [docker-compose.yml](docker-compose.yml). If
   it still misbehaves, `docker compose restart dev`.
-- **Stale `./out` after pulling new code** — `rm -rf out && docker compose run --rm build`.
+- **Stale `./out` after pulling new code** - `rm -rf out && docker compose run --rm build`.

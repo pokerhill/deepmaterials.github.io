@@ -39,6 +39,12 @@ const industries: ReadonlyArray<Industry> = [
       "Thermal solutions for 5G base stations, network switches, and fiber optic transceivers.",
     icon: "M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.394 9.393c5.857-5.858 15.355-5.858 21.213 0",
   },
+  {
+    title: "AI Infrastructure",
+    description:
+      "Thermal solutions for AI factories, accelerated computing, liquid cooling, and high-density compute platforms.",
+    icon: "M4 7h16M4 12h16M4 17h16M7 7v10m10-10v10M9 9h.01M9 14h.01M15 9h.01M15 14h.01",
+  },
 ];
 
 const cardVariants = {

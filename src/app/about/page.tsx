@@ -98,7 +98,7 @@ export default function AboutPage() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-            <span className="text-gradient">About Deep Material</span>
+            <span className="text-gradient">About Deep Materials</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-dm-gray-light max-w-2xl mx-auto leading-relaxed">
             Pioneering advanced thermal management solutions for the
@@ -116,7 +116,7 @@ export default function AboutPage() {
                 Our Story
               </h2>
               <p className="text-dm-gray-light text-lg leading-relaxed">
-                Deep Material has been at the forefront of thermal management
+                Deep Materials has been at the forefront of thermal management
                 solutions since 2019. Our products are tailored to manage heat
                 dissipation in modern electronic devices, ensuring optimal
                 performance and longevity. We provide a comprehensive range of
@@ -128,10 +128,46 @@ export default function AboutPage() {
             <FadeInSection delay={0.2}>
               <img
                 src="/images/hero/about.jpg"
-                alt="Deep Material facility"
+                alt="Deep Materials facility"
                 className="rounded-2xl w-full h-80 object-cover shadow-lg shadow-dm-accent/10"
               />
             </FadeInSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Global Presence ---- */}
+      <section className="py-20 bg-dm-navy">
+        <div className="max-w-6xl mx-auto px-6">
+          <FadeInSection className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold text-dm-white">
+              Global Presence
+            </h2>
+            <p className="mt-4 text-dm-gray-light text-lg max-w-2xl mx-auto">
+              Serving customers across the globe from four strategic locations.
+            </p>
+          </FadeInSection>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {offices.map((office, idx) => (
+              <FadeInSection key={office.location} delay={idx * 0.1}>
+                <div className="glass glow-border hover-glow rounded-2xl p-6 h-full flex flex-col">
+                  <span className="text-3xl mb-3">{office.flag}</span>
+                  <h3 className="text-lg font-semibold text-dm-white mb-2">
+                    {office.location}
+                  </h3>
+                  <p className="text-dm-gray text-sm leading-relaxed flex-1">
+                    {office.address}
+                  </p>
+                  <a
+                    href={`tel:${office.phone.replace(/\s/g, "")}`}
+                    className="mt-4 text-dm-accent text-sm hover:text-dm-accent-light transition-colors"
+                  >
+                    {office.phone}
+                  </a>
+                </div>
+              </FadeInSection>
+            ))}
           </div>
         </div>
       </section>
@@ -225,7 +261,7 @@ export default function AboutPage() {
             <FadeInSection delay={0.1}>
               <img
                 src="/images/hero/sustain.jpg"
-                alt="Sustainability at Deep Material"
+                alt="Sustainability at Deep Materials"
                 className="rounded-2xl w-full h-80 object-cover shadow-lg shadow-dm-accent/10"
               />
             </FadeInSection>
@@ -234,7 +270,7 @@ export default function AboutPage() {
                 <span className="text-gradient">Sustainability</span>
               </h2>
               <p className="text-dm-gray-light text-lg leading-relaxed">
-                Sustainability is a core value at Deep Material. We believe that
+                Sustainability is a core value at Deep Materials. We believe that
                 innovation and environmental responsibility go hand in hand. Our
                 manufacturing focuses on reducing waste, minimizing energy usage,
                 and utilizing recyclable materials. Our products are non-toxic,
@@ -246,68 +282,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ---- Work Environment ---- */}
-      <section className="py-20 bg-dm-midnight">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <FadeInSection>
-              <h2 className="text-3xl sm:text-4xl font-bold text-dm-white mb-6">
-                Work Environment
-              </h2>
-              <p className="text-dm-gray-light text-lg leading-relaxed">
-                Deep Material fosters a dynamic, collaborative, and supportive work
-                environment. We believe a positive work culture is essential for
-                innovation and productivity. Diversity is celebrated and every
-                employee feels valued. We offer flexible work arrangements, health
-                benefits, and wellness initiatives.
-              </p>
-            </FadeInSection>
-            <FadeInSection delay={0.2}>
-              <img
-                src="/images/hero/work.jpg"
-                alt="Deep Material work environment"
-                className="rounded-2xl w-full h-80 object-cover shadow-lg shadow-dm-accent/10"
-              />
-            </FadeInSection>
-          </div>
-        </div>
-      </section>
-
-      {/* ---- Global Presence ---- */}
-      <section className="py-20 bg-dm-navy">
-        <div className="max-w-6xl mx-auto px-6">
-          <FadeInSection className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold text-dm-white">
-              Global Presence
-            </h2>
-            <p className="mt-4 text-dm-gray-light text-lg max-w-2xl mx-auto">
-              Serving customers across the globe from four strategic locations.
-            </p>
-          </FadeInSection>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {offices.map((office, idx) => (
-              <FadeInSection key={office.location} delay={idx * 0.1}>
-                <div className="glass glow-border hover-glow rounded-2xl p-6 h-full flex flex-col">
-                  <span className="text-3xl mb-3">{office.flag}</span>
-                  <h3 className="text-lg font-semibold text-dm-white mb-2">
-                    {office.location}
-                  </h3>
-                  <p className="text-dm-gray text-sm leading-relaxed flex-1">
-                    {office.address}
-                  </p>
-                  <a
-                    href={`tel:${office.phone.replace(/\s/g, "")}`}
-                    className="mt-4 text-dm-accent text-sm hover:text-dm-accent-light transition-colors"
-                  >
-                    {office.phone}
-                  </a>
-                </div>
-              </FadeInSection>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }

@@ -121,14 +121,14 @@ export default function DownloadModal({
       setIsSubmitting(true);
 
       try {
-        // Best-effort notification — download proceeds regardless
+        // Best-effort notification - download proceeds regardless
         sendDownloadNotification({
           name: name.trim(),
           email: email.trim(),
           product: productName,
           timestamp: new Date().toISOString(),
         }).catch(() => {
-          // Silently ignore — email notification is best-effort
+          // Silently ignore - email notification is best-effort
         });
 
         recordDownloadAttempt();
