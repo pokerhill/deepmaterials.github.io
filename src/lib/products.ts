@@ -253,7 +253,7 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
     slug: 'gftp-lo-series',
     name: 'GFTP-LO Series (Low Oil Bleeding Pad)',
     shortName: 'GFTP-LO Series',
-    description: 'Low oil bleeding thermal interface pads designed for high-performance electronics with minimal oil migration.',
+    description: 'Low-oil-bleed thermal interface pads engineered for controlled conformal flow under compression, improving surface wet-out and gap filling while minimizing silicone oil migration.',
     image: '/images/products/gftp-lo.jpg',
     pdfFile: '/pdfs/GFTP-LO-Series-Low-Oil-Bleeding-Pad.pdf',
     applications: ['Telecommunications', 'Automotive control systems', 'Power modules', 'Computing', 'Networking'],
@@ -287,9 +287,9 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
       { name: 'Volatility', value: '<0.08%' },
     ],
     variants: [
-      { model: 'TCG-Gel-4000LO', color: 'Green', description: 'Compact electronics — smartphones, tablets, laptops', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Min BLT', value: '0.06 mm' }, { name: 'Density', value: '~3.25 g/cc' }, { name: 'Dielectric Constant @1GHz', value: '7.5' }] },
+      { model: 'TCG-Gel-4000LO', color: 'Green', description: 'Compact electronics - smartphones, tablets, laptops', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Min BLT', value: '0.06 mm' }, { name: 'Density', value: '~3.25 g/cc' }, { name: 'Dielectric Constant @1GHz', value: '7.5' }] },
       { model: 'TCG-Gel-4000LOVE', color: 'Red', description: 'Color-coded for wearables, automotive, networking', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Min BLT', value: '0.06 mm' }, { name: 'Density', value: '~3.25 g/cc' }, { name: 'Dielectric Constant @1GHz', value: '8.0' }] },
-      { model: 'TCG-Gel-6000LO', color: 'Blue', description: 'High-demand — data centers, automotive heat management', specs: [{ name: 'Thermal Conductivity', value: '6.0 W/m·K' }, { name: 'Min BLT', value: '0.15 mm' }, { name: 'Density', value: '~3.3 g/cc' }, { name: 'Dielectric Constant @1GHz', value: '8.0' }] },
+      { model: 'TCG-Gel-6000LO', color: 'Blue', description: 'High-demand - data centers, automotive heat management', specs: [{ name: 'Thermal Conductivity', value: '6.0 W/m·K' }, { name: 'Min BLT', value: '0.15 mm' }, { name: 'Density', value: '~3.3 g/cc' }, { name: 'Dielectric Constant @1GHz', value: '8.0' }] },
     ],
   },
   {

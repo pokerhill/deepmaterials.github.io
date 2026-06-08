@@ -188,7 +188,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     </td>
                     {hasColor && (
                       <td className="px-4 py-3 text-dm-gray-light whitespace-nowrap">
-                        {variant.color ?? "—"}
+                        {variant.color ?? "-"}
                       </td>
                     )}
                     {specNames.map((name) => {
@@ -198,7 +198,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                           key={name}
                           className="px-4 py-3 text-dm-gray-light whitespace-nowrap"
                         >
-                          {spec?.value ?? "—"}
+                          {spec?.value ?? "-"}
                         </td>
                       );
                     })}

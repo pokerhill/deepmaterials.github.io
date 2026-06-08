@@ -13,11 +13,11 @@ const APPLICATION_SECTIONS: readonly ApplicationSection[] = [
   {
     title: "Consumer Electronics",
     intro:
-      "Thermal grease manages heat in compact, high-performance devices. Applied between CPU/GPU and heat sink, it ensures efficient thermal transfer where space is at a premium.",
+      "Thermal grease, phase change materials (PCM), and FlexiMetal (35W/mK) manage heat in compact, high-performance devices. Applied between CPU/GPU and active cooling paths, it ensures efficient heat transfer where space is at a premium.",
     items: [
-      "Laptops — high-performance processors in thin form factors",
-      "Smartphones — 5G processors generating significant heat",
-      "Gaming consoles — Xbox, PlayStation PS5 with sustained workloads",
+      "Laptops - high-performance processors in thin form factors",
+      "Smartphones - 5G processors generating significant heat",
+      "Gaming consoles - Xbox, PlayStation PS5 with sustained workloads",
     ],
     benefits:
       "Prevents thermal throttling, extends device lifespan, and enables quieter operation by reducing fan speeds.",
@@ -27,7 +27,7 @@ const APPLICATION_SECTIONS: readonly ApplicationSection[] = [
     intro:
       "Manages heat from batteries and power electronics in EVs. Thermal interface materials help dissipate heat during charging and discharging cycles, protecting critical components.",
     items: [
-      "Battery cells — thermal regulation during fast charging",
+      "Battery cells - thermal regulation during fast charging",
       "Inverters, converters, and motor controllers",
       "Engine control units and onboard electronics",
     ],
@@ -51,9 +51,9 @@ const APPLICATION_SECTIONS: readonly ApplicationSection[] = [
     intro:
       "Used in extreme conditions where thermal performance directly impacts safety and reliability. These applications demand materials that perform across wide temperature ranges.",
     items: [
-      "Aerospace — avionics systems, satellite electronics",
-      "Medical — MRI machines, ultrasound imaging devices",
-      "Industrial — robotic arms, CNC machines, power modules",
+      "Aerospace - avionics systems, satellite electronics",
+      "Medical - MRI machines, ultrasound imaging devices",
+      "Industrial - robotic arms, CNC machines, power modules",
     ],
     benefits:
       "Maintains optimal operating temperatures, extends operational life, and ensures compliance with rigorous safety standards.",
@@ -83,11 +83,11 @@ const sectionVariants = {
 
 export default function ApplicationsPage() {
   return (
-    <section className="min-h-screen bg-dm-midnight py-24 px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen bg-dm-midnight pt-24 pb-6 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
         {/* Header */}
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-6"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -101,7 +101,7 @@ export default function ApplicationsPage() {
         </motion.div>
 
         {/* Sections */}
-        <div className="space-y-16">
+        <div className="space-y-6">
           {APPLICATION_SECTIONS.map((section, idx) => {
             const isReversed = idx % 2 !== 0;
 
@@ -119,9 +119,6 @@ export default function ApplicationsPage() {
                 {/* Title panel */}
                 <div className="lg:w-2/5 flex items-center">
                   <div className="w-full rounded-2xl glass glow-border p-8 flex flex-col justify-center">
-                    <span className="text-xs font-mono text-dm-accent/60 uppercase tracking-widest mb-2">
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
                     <h2 className="text-2xl sm:text-3xl font-bold text-dm-white">
                       {section.title}
                     </h2>

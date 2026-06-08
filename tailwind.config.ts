@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Deep Material brand palette — dark premium tech
+        // Deep Materials brand palette - dark premium tech
         dm: {
           midnight: '#0A0E1A',
           navy: '#0F1629',

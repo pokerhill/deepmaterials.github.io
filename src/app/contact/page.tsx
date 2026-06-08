@@ -14,28 +14,31 @@ import {
 const offices = [
   {
     location: "USA HQ",
-    address: "20115 Orchard Meadow Dr. Saratoga, USA",
+    address: "Saratoga (Silicon Valley), California",
     phone: "+1 (408) 464-8007",
+    extraContacts: [
+      {
+        city: "Houston, Texas",
+        phone: "+1 (408) 836-6751",
+      },
+    ],
     flag: "🇺🇸",
   },
   {
     location: "China",
-    address:
-      "No. 68, Lianfeng Road, Changshu, Suzhou, Jiangsu, China",
+    address: "Suzhou, China",
     phone: "+86 (199) 6284-6991",
     flag: "🇨🇳",
   },
   {
     location: "Taiwan",
-    address:
-      "12F.-2, No. 162, Sec. 4, Zhongxiao E. Rd., Da'an Dist., Taipei City",
+    address: "Taipei, Taiwan",
     phone: "+886 921 786 240",
     flag: "🇹🇼",
   },
   {
     location: "India",
-    address:
-      "1/1, Shivanand Marg, Malviya Nagar, Jaipur, Rajasthan, India",
+    address: "Jaipur, India",
     phone: "+91 77039 11180",
     flag: "🇮🇳",
   },
@@ -189,7 +192,7 @@ export default function ContactPage() {
       <section className="py-20 bg-dm-navy">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-5 gap-12">
-            {/* Left column — form (3/5) */}
+            {/* Left column - form (3/5) */}
             <FadeInSection className="lg:col-span-3">
               <div className="glass glow-border rounded-2xl p-8">
                 <h2 className="text-2xl font-bold text-dm-white mb-6">
@@ -321,7 +324,7 @@ export default function ContactPage() {
               </div>
             </FadeInSection>
 
-            {/* Right column — office info (2/5) */}
+            {/* Right column - office info (2/5) */}
             <FadeInSection className="lg:col-span-2" delay={0.15}>
               <div className="space-y-8">
                 {/* Email highlight */}
@@ -366,6 +369,23 @@ export default function ContactPage() {
                             >
                               {office.phone}
                             </a>
+                            {"extraContacts" in office && (
+                              <div className="mt-3 space-y-1">
+                                {office.extraContacts.map((contact) => (
+                                  <div key={contact.city}>
+                                    <p className="text-dm-gray text-sm leading-relaxed">
+                                      {contact.city}
+                                    </p>
+                                    <a
+                                      href={`tel:${contact.phone.replace(/\s/g, "")}`}
+                                      className="text-dm-accent text-sm mt-1.5 inline-block hover:text-dm-accent-light transition-colors"
+                                    >
+                                      {contact.phone}
+                                    </a>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>

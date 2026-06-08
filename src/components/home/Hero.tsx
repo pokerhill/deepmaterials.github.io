@@ -63,11 +63,11 @@ const itemVariants = {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-dm-midnight">
+    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-dm-midnight">
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src="/images/hero/gap-pad-line.jpg"
+          src="/images/hero/gap-pad-line-cropped.jpg"
           alt=""
           className="w-full h-full object-cover"
         />
@@ -108,7 +108,7 @@ export default function Hero() {
           className="mt-6 text-lg sm:text-xl text-dm-gray-light max-w-2xl mx-auto leading-relaxed"
           variants={itemVariants}
         >
-          Your Trusted Thermal Solution Partner — managing heat dissipation in
+          Your trusted thermal solution partner - managing heat dissipation in
           modern electronics since 2019
         </motion.p>
 
@@ -120,13 +120,25 @@ export default function Hero() {
             href="/products"
             className="px-8 py-3.5 rounded-lg bg-dm-accent text-dm-midnight font-semibold text-lg hover:bg-dm-accent-light transition-colors duration-300 shadow-lg shadow-dm-accent/20"
           >
-            Explore Products
+            Explore 100+ Products
           </Link>
           <Link
             href="/contact"
             className="px-8 py-3.5 rounded-lg border border-dm-accent text-dm-accent font-semibold text-lg hover:bg-dm-accent/10 transition-colors duration-300"
           >
             Contact Us
+          </Link>
+        </motion.div>
+
+        <motion.div
+          className="mt-5 flex justify-center"
+          variants={itemVariants}
+        >
+          <Link
+            href="/products/fleximetal-and-elm/"
+            className="px-8 py-3.5 rounded-lg border border-dm-accent bg-dm-midnight/35 text-dm-accent font-semibold text-lg hover:bg-dm-accent/10 transition-colors duration-300"
+          >
+            Explore Flagship FlexiMetal 35 W/mK
           </Link>
         </motion.div>
       </motion.div>
