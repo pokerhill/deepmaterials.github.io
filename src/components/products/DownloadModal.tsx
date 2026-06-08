@@ -2,13 +2,17 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { validateEmail, validateName } from "@/lib/email-validation";
+import {
+  validateEmail,
+  validateName,
+  validateEmailDomain,
+} from "@/lib/email-validation";
 import {
   checkRateLimit,
   recordDownloadAttempt,
   formatResetTime,
 } from "@/lib/rate-limit";
-import { sendDownloadNotification } from "@/lib/formspree";
+import { sendDownloadNotification } from "@/lib/download-log";
 
 interface DownloadModalProps {
   readonly isOpen: boolean;
@@ -119,6 +123,16 @@ export default function DownloadModal({
 
       setErrors({});
       setIsSubmitting(true);
+
+      // Confirm the email's domain can actually receive mail (catches fake and
+      // typo'd domains). Fails open on network errors so a DNS hiccup never
+      // blocks a legitimate download.
+      const domainResult = await validateEmailDomain(email);
+      if (!domainResult.valid) {
+        setErrors({ email: domainResult.error });
+        setIsSubmitting(false);
+        return;
+      }
 
       try {
         // Best-effort notification — download proceeds regardless

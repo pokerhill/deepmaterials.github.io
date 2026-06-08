@@ -2,6 +2,10 @@
 
 import { useRef, useState, type FormEvent } from "react";
 import { motion, useInView } from "framer-motion";
+import {
+  APPS_SCRIPT_ENDPOINT,
+  isAppsScriptConfigured,
+} from "@/lib/apps-script";
 
 /* ------------------------------------------------------------------ */
 /*  Office data                                                        */
@@ -116,31 +120,34 @@ export default function ContactPage() {
     setStatus("submitting");
     setErrorMsg("");
 
-    try {
-      const res = await fetch(
-        "https://formspree.io/f/YOUR_CONTACT_FORM_ID",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            name: form.name,
-            _replyto: form.email,
-            email: form.email,
-            company: form.company,
-            subject: form.subject,
-            message: form.message,
-          }),
-        }
+    if (!isAppsScriptConfigured()) {
+      setStatus("error");
+      setErrorMsg(
+        "The form isn’t configured yet. Please email us at sales@deep-materials.com."
       );
+      return;
+    }
 
-      if (!res.ok) {
-        setStatus("error");
-        setErrorMsg("Submission failed. Please try again or email us directly.");
-        return;
-      }
+    try {
+      // The contact form is delivered to sales@deep-materials.com by the same
+      // Apps Script that logs downloads (scripts/download-log.gs), keyed by the
+      // "type" field. Apps Script doesn't send CORS headers, so we POST with
+      // `no-cors` and a text/plain body (a "simple" request — no preflight).
+      // The response is opaque, so a completed request is treated as success.
+      await fetch(APPS_SCRIPT_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({
+          type: "contact",
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          subject: form.subject,
+          message: form.message,
+          page: typeof window !== "undefined" ? window.location.href : "",
+        }),
+      });
 
       setStatus("success");
       setForm(INITIAL_FORM);
