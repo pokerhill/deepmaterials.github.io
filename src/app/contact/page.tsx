@@ -14,7 +14,7 @@ import {
 const offices = [
   {
     location: "USA HQ",
-    address: "Saratoga (Silicon Valley), California",
+    address: "Silicon Valley, California",
     phone: "+1 (408) 464-8007",
     extraContacts: [
       {
