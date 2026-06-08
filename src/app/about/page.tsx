@@ -120,7 +120,7 @@ export default function AboutPage() {
             </FadeInSection>
             <FadeInSection delay={0.2}>
               <img
-                src="/images/hero/about.jpg"
+                src="/images/hero/about.jpeg"
                 alt="Deep Materials facility"
                 className="rounded-2xl w-full h-80 object-cover shadow-lg shadow-dm-accent/10"
               />
