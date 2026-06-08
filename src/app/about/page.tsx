@@ -10,28 +10,21 @@ import { motion, useInView } from "framer-motion";
 const offices = [
   {
     location: "USA HQ",
-    address: "20115 Orchard Meadow Dr. Saratoga, USA",
     phone: "+1 (408) 464-8007",
     flag: "🇺🇸",
   },
   {
     location: "China",
-    address:
-      "No. 68, Lianfeng Road, Changshu, Suzhou, Jiangsu, China",
     phone: "+86 (199) 6284-6991",
     flag: "🇨🇳",
   },
   {
     location: "Taiwan",
-    address:
-      "12F.-2, No. 162, Sec. 4, Zhongxiao E. Rd., Da'an Dist., Taipei City",
     phone: "+886 921 786 240",
     flag: "🇹🇼",
   },
   {
     location: "India",
-    address:
-      "1/1, Shivanand Marg, Malviya Nagar, Jaipur, Rajasthan, India",
     phone: "+91 77039 11180",
     flag: "🇮🇳",
   },
@@ -156,12 +149,9 @@ export default function AboutPage() {
                   <h3 className="text-lg font-semibold text-dm-white mb-2">
                     {office.location}
                   </h3>
-                  <p className="text-dm-gray text-sm leading-relaxed flex-1">
-                    {office.address}
-                  </p>
                   <a
                     href={`tel:${office.phone.replace(/\s/g, "")}`}
-                    className="mt-4 text-dm-accent text-sm hover:text-dm-accent-light transition-colors"
+                    className="mt-auto text-dm-accent text-sm hover:text-dm-accent-light transition-colors"
                   >
                     {office.phone}
                   </a>
