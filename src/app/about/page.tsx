@@ -10,23 +10,23 @@ import { motion, useInView } from "framer-motion";
 const offices = [
   {
     location: "USA HQ",
+    city: "Silicon Valley",
     phone: "+1 (408) 464-8007",
-    flag: "🇺🇸",
   },
   {
     location: "China",
+    city: "Suzhou",
     phone: "+86 (199) 6284-6991",
-    flag: "🇨🇳",
   },
   {
     location: "Taiwan",
+    city: "Taipei",
     phone: "+886 921 786 240",
-    flag: "🇹🇼",
   },
   {
     location: "India",
+    city: "Jaipur",
     phone: "+91 77039 11180",
-    flag: "🇮🇳",
   },
 ] as const;
 
@@ -145,10 +145,10 @@ export default function AboutPage() {
             {offices.map((office, idx) => (
               <FadeInSection key={office.location} delay={idx * 0.1}>
                 <div className="glass glow-border hover-glow rounded-2xl p-6 h-full flex flex-col">
-                  <span className="text-3xl mb-3">{office.flag}</span>
-                  <h3 className="text-lg font-semibold text-dm-white mb-2">
+                  <h3 className="text-lg font-semibold text-dm-white mb-1">
                     {office.location}
                   </h3>
+                  <p className="text-dm-gray text-sm">{office.city}</p>
                   <a
                     href={`tel:${office.phone.replace(/\s/g, "")}`}
                     className="mt-auto text-dm-accent text-sm hover:text-dm-accent-light transition-colors"
