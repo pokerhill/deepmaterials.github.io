@@ -99,7 +99,7 @@ export default function Hero() {
           className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight"
           variants={itemVariants}
         >
-          <span className="text-dm-white">Thermal Solutions</span>
+          <span className="text-dm-white">Thermal Materials</span>
           <br />
           <span className="text-gradient">Engineered for Performance</span>
         </motion.h1>
