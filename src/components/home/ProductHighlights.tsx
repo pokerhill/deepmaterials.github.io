@@ -2,9 +2,18 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { PRODUCT_CATEGORIES } from "@/lib/products";
+import { VISIBLE_PRODUCT_CATEGORIES } from "@/lib/products";
 
-const featuredProducts = PRODUCT_CATEGORIES.slice(0, 6);
+const FLEXIMETAL_SLUG = "fleximetal";
+type FeaturedProduct = (typeof VISIBLE_PRODUCT_CATEGORIES)[number];
+
+const featuredProducts = [
+  ...VISIBLE_PRODUCT_CATEGORIES.slice(0, 2),
+  VISIBLE_PRODUCT_CATEGORIES.find(({ slug }) => slug === FLEXIMETAL_SLUG),
+  ...VISIBLE_PRODUCT_CATEGORIES.filter(
+    ({ slug }) => slug !== FLEXIMETAL_SLUG,
+  ).slice(2, 5),
+].filter((product): product is FeaturedProduct => Boolean(product));
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -58,11 +67,23 @@ export default function ProductHighlights() {
                 className="block h-full glass rounded-xl overflow-hidden hover-glow transition-transform duration-300 hover:scale-[1.03] group"
               >
                 <div className="h-48 overflow-hidden">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+                  {product.video ? (
+                    <video
+                      src={product.video}
+                      poster={product.image}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  ) : (
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  )}
                 </div>
                 <div className="p-6">
                 <h3 className="text-xl font-semibold text-dm-white group-hover:text-dm-accent transition-colors duration-300">

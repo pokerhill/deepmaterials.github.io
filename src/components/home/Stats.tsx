@@ -13,7 +13,7 @@ interface StatItem {
 const stats: ReadonlyArray<StatItem> = [
   { value: "2019", suffix: "", numericValue: 2019, label: "Founded" },
   { value: "11", suffix: "+", numericValue: 11, label: "Product Lines" },
-  { value: "4", suffix: "", numericValue: 4, label: "Global Offices" },
+  { value: "6", suffix: "", numericValue: 6, label: "Locations" },
   { value: "6", suffix: "+", numericValue: 6, label: "Industries Served" },
 ];
 

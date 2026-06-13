@@ -9,24 +9,40 @@ import { motion, useInView } from "framer-motion";
 
 const offices = [
   {
-    location: "USA HQ",
-    city: "Silicon Valley",
+    location: "USA Headquarters",
+    address: "Silicon Valley, California",
     phone: "+1 (408) 464-8007",
+    flag: "🇺🇸",
   },
   {
     location: "China",
-    city: "Suzhou",
+    address: "Suzhou, Jiangsu",
     phone: "+86 (199) 6284-6991",
+    flag: "🇨🇳",
   },
   {
     location: "Taiwan",
-    city: "Taipei",
+    address: "Taipei City",
     phone: "+886 921 786 240",
+    flag: "🇹🇼",
+  },
+  {
+    location: "Houston Office",
+    address: "Houston, Texas",
+    phone: "+1 (408) 836-6751",
+    flag: "🇺🇸",
   },
   {
     location: "India",
-    city: "Jaipur",
+    address: "Jaipur, Rajasthan",
     phone: "+91 77039 11180",
+    flag: "🇮🇳",
+  },
+  {
+    location: "India",
+    address: "Bengaluru, Karnataka (Resil JV)",
+    phone: "+91 77039 11180",
+    flag: "🇮🇳",
   },
 ] as const;
 
@@ -137,24 +153,37 @@ export default function AboutPage() {
               Global Presence
             </h2>
             <p className="mt-4 text-dm-gray-light text-lg max-w-2xl mx-auto">
-              Serving customers across the globe from four strategic locations.
+              Serving customers across the globe from six strategic locations.
             </p>
           </FadeInSection>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-6 gap-6">
             {offices.map((office, idx) => (
-              <FadeInSection key={office.location} delay={idx * 0.1}>
+              <FadeInSection
+                key={`${office.location}-${office.address}`}
+                delay={idx * 0.1}
+                className="lg:col-span-2"
+              >
                 <div className="glass glow-border hover-glow rounded-2xl p-6 h-full flex flex-col">
-                  <h3 className="text-lg font-semibold text-dm-white mb-1">
+                  <span className="text-3xl mb-3">{office.flag}</span>
+                  <h3 className="text-lg font-semibold text-dm-white mb-2">
                     {office.location}
                   </h3>
-                  <p className="text-dm-gray text-sm">{office.city}</p>
-                  <a
-                    href={`tel:${office.phone.replace(/\s/g, "")}`}
-                    className="mt-auto text-dm-accent text-sm hover:text-dm-accent-light transition-colors"
-                  >
-                    {office.phone}
-                  </a>
+                  <p className="text-dm-gray text-sm leading-relaxed flex-1 whitespace-pre-line">
+                    {office.address}
+                  </p>
+                  {office.phone.startsWith("+") ? (
+                    <a
+                      href={`tel:${office.phone.replace(/\s/g, "")}`}
+                      className="mt-4 text-dm-accent text-sm hover:text-dm-accent-light transition-colors"
+                    >
+                      {office.phone}
+                    </a>
+                  ) : (
+                    <p className="mt-4 text-dm-gray text-sm">
+                      {office.phone}
+                    </p>
+                  )}
                 </div>
               </FadeInSection>
             ))}
@@ -195,12 +224,18 @@ export default function AboutPage() {
                     Our Mission
                   </h3>
                 </div>
-                <p className="text-dm-gray-light leading-relaxed">
-                  To furnish world-class thermal management solutions that
-                  enable our customers to excel in their industries. We aspire
-                  to become the most trusted partner for innovative,
-                  eco-friendly solutions.
-                </p>
+                <div className="space-y-4 text-dm-gray-light leading-relaxed">
+                  <p>
+                    To help engineers solve critical heat-transfer challenges
+                    with thermal interface materials that are reliable,
+                    manufacturable, and ready for high-volume production.
+                  </p>
+                  <p>
+                    Deep Materials supports customers from material selection
+                    through testing, qualification, and scale-up, with solutions
+                    designed for compact, high-power electronic systems.
+                  </p>
+                </div>
               </div>
             </FadeInSection>
 
@@ -232,41 +267,55 @@ export default function AboutPage() {
                     Our Vision
                   </h3>
                 </div>
-                <p className="text-dm-gray-light leading-relaxed">
-                  To lead the global thermal solutions market by consistently
-                  pushing the boundaries of technology, creating products that
-                  minimize environmental impact while maximizing device
-                  performance.
-                </p>
+                <div className="space-y-4 text-dm-gray-light leading-relaxed">
+                  <p>
+                    To become a trusted global partner for advanced thermal
+                    materials used in next-generation electronics, mobility,
+                    computing, and energy systems.
+                  </p>
+                  <p>
+                    We aim to combine strong materials science, application
+                    engineering, and disciplined manufacturing to help customers
+                    improve performance, reliability, and product design
+                    freedom.
+                  </p>
+                </div>
               </div>
             </FadeInSection>
           </div>
         </div>
       </section>
 
-      {/* ---- Sustainability ---- */}
+      {/* ---- Quality & Sustainability ---- */}
       <section className="py-20 bg-dm-navy">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <FadeInSection delay={0.1}>
               <img
                 src="/images/hero/sustain.jpg"
-                alt="Sustainability at Deep Materials"
+                alt="Quality and sustainability at Deep Materials"
                 className="rounded-2xl w-full h-80 object-cover shadow-lg shadow-dm-accent/10"
               />
             </FadeInSection>
             <FadeInSection delay={0.2}>
               <h2 className="text-3xl sm:text-4xl font-bold text-dm-white mb-6">
-                <span className="text-gradient">Sustainability</span>
+                <span className="text-gradient">Quality &amp; Sustainability</span>
               </h2>
-              <p className="text-dm-gray-light text-lg leading-relaxed">
-                Sustainability is a core value at Deep Materials. We believe that
-                innovation and environmental responsibility go hand in hand. Our
-                manufacturing focuses on reducing waste, minimizing energy usage,
-                and utilizing recyclable materials. Our products are non-toxic,
-                recyclable, and do not contribute to environmental degradation. We
-                invest in green technologies to reduce our carbon footprint.
-              </p>
+              <div className="space-y-4 text-dm-gray-light text-lg leading-relaxed">
+                <p>
+                  Thermal materials designed for reliable qualification and
+                  responsible manufacturing.
+                </p>
+                <p>
+                  Deep Materials supports customers with controlled
+                  formulations, lot-to-lot consistency, reliability testing,
+                  application guidance, and the documentation required for
+                  product qualification. Our development priorities include
+                  low-outgassing materials, reduced oil bleed, efficient
+                  production methods, and formulations aligned with RoHS, REACH,
+                  and global environmental requirements.
+                </p>
+              </div>
             </FadeInSection>
           </div>
         </div>

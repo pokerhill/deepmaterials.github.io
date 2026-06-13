@@ -135,7 +135,7 @@ export default function Hero() {
           variants={itemVariants}
         >
           <Link
-            href="/products/fleximetal-and-elm/"
+            href="/products/fleximetal/"
             className="px-8 py-3.5 rounded-lg border border-dm-accent bg-dm-midnight/35 text-dm-accent font-semibold text-lg hover:bg-dm-accent/10 transition-colors duration-300"
           >
             Explore Flagship FlexiMetal 35 W/mK

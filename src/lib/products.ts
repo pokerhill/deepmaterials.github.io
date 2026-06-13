@@ -16,11 +16,13 @@ export interface ProductCategory {
   readonly shortName: string;
   readonly description: string;
   readonly image: string;
+  readonly video?: string;
   readonly pdfFile: string;
   readonly variants: ReadonlyArray<ProductVariant>;
   readonly commonSpecs?: ReadonlyArray<ProductSpec>;
   readonly applications?: ReadonlyArray<string>;
   readonly specHeaders?: ReadonlyArray<string>;
+  readonly hidden?: boolean;
 }
 
 export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
@@ -102,10 +104,91 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
     ],
   },
   {
+    slug: 'pcm',
+    name: 'PCM',
+    shortName: 'PCM',
+    description: 'PCM is up to 9.6 W/m·K phase change material supplied solid for simplified handling and assembly, which transitions near 50°C to improve surface wetting, reduce thermal impedance, and limit pump-out/migration for long-term reliability.',
+    image: '/images/products/pcm-9600.png',
+    pdfFile: '/pdfs/PCM-9600.pdf',
+    applications: [
+      'Microprocessors and chipsets',
+      'Power semiconductors and voltage regulators',
+      'Graphics processors and high-performance computing devices',
+      'Telecommunications and networking equipment',
+      'Automotive electronics and battery systems',
+      'LED lighting modules',
+      'Avionics and satellites',
+    ],
+    commonSpecs: [
+      { name: 'Storage', value: '8°C to 40°C in a dry environment (RH <70%)' },
+      { name: 'Shelf Life', value: '12 months' },
+      { name: 'Burn-In', value: 'Operate above 70°C for at least 1 hour after assembly' },
+      { name: 'Form', value: 'Sheet' },
+    ],
+    variants: [
+      {
+        model: 'PCM9600',
+        color: 'Gray',
+        description: 'Phase change material with 9.6 W/mK thermal conductivity',
+        specs: [
+          { name: 'Thermal Conductivity', value: '9.6 W/m·K' },
+          { name: 'Thickness @ 50 psi', value: '0.02 mm' },
+          { name: 'Thermal Impedance', value: '0.035 °C-in²/W' },
+          { name: 'Density', value: '2.8 g/cc' },
+          { name: 'Continuous Use Temperature', value: '-40°C to 125°C' },
+          { name: 'Phase Changing Temperature', value: '50°C' },
+          { name: 'Volume Resistance', value: '10¹⁴ Ω·cm' },
+        ],
+      },
+      {
+        model: 'PCM8500',
+        color: 'Gray',
+        description: 'Phase change material with 8.5 W/mK thermal conductivity',
+        specs: [
+          { name: 'Thermal Conductivity', value: '8.5 W/m·K' },
+          { name: 'Thickness @ 50 psi', value: '0.02 mm' },
+          { name: 'Thermal Impedance', value: '0.04 °C-in²/W' },
+          { name: 'Density', value: '2.5 g/cc' },
+          { name: 'Continuous Use Temperature', value: '-40°C to 125°C' },
+          { name: 'Phase Changing Temperature', value: '50°C' },
+          { name: 'Volume Resistance', value: '10⁸ Ω·cm' },
+        ],
+      },
+      {
+        model: 'PCM5000',
+        color: 'Gray',
+        description: 'Phase change material with 5.0 W/mK thermal conductivity',
+        specs: [
+          { name: 'Thermal Conductivity', value: '5.0 W/m·K' },
+          { name: 'Thickness @ 50 psi', value: '0.02 mm' },
+          { name: 'Thermal Impedance', value: '0.05 °C-in²/W' },
+          { name: 'Density', value: '2.3 g/cc' },
+          { name: 'Continuous Use Temperature', value: '-40°C to 125°C' },
+          { name: 'Phase Changing Temperature', value: '50°C' },
+          { name: 'Volume Resistance', value: '10⁸ Ω·cm' },
+        ],
+      },
+      {
+        model: 'PCM3500',
+        color: 'Gray',
+        description: 'Phase change material with 3.5 W/mK thermal conductivity',
+        specs: [
+          { name: 'Thermal Conductivity', value: '3.5 W/m·K' },
+          { name: 'Thickness @ 50 psi', value: '0.02 mm' },
+          { name: 'Thermal Impedance', value: '0.05 °C-in²/W' },
+          { name: 'Density', value: '2.3 g/cc' },
+          { name: 'Continuous Use Temperature', value: '-40°C to 125°C' },
+          { name: 'Phase Changing Temperature', value: '50°C' },
+          { name: 'Volume Resistance', value: '10⁸ Ω·cm' },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'single-part-liquid-gap-filler',
     name: 'Single Part Liquid Gap Filler',
     shortName: 'Single Part Gap Filler',
-    description: 'Thermally conductive gap fillers that bridge air gaps between components, ensuring optimal thermal transfer in compact devices.',
+    description: 'Thermally conductive gap fillers for reliable heat transfer in compact devices.\nAvailable in low-oil-bleed, low-outgassing, high-flow, low-permittivity, and EMI-absorbing variants.\nCompatible with automated dispensing systems.',
     image: '/images/products/single-part-gel.jpg',
     pdfFile: '/pdfs/Single-Part-Liquid-Gap-Filler.pdf',
     applications: ['Smartphones', 'Tablets', 'Laptops', 'Power supplies', 'Automotive electronics', 'Telecommunications'],
@@ -115,21 +198,26 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
       { name: 'Flammability', value: 'V-0 (UL 94)' },
     ],
     variants: [
-      { model: 'TCG-Gel-2000-LP', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }] },
+      { model: 'TCG-Gel-140AB', color: 'Black', description: 'EMI absorbent thermal gel for RF and high-frequency electronics', specs: [{ name: 'Thermal Conductivity', value: '1.4 W/m·K' }, { name: 'Flow Rate', value: '20 g/min' }, { name: 'Minimum BLT', value: '20 µm' }, { name: 'Density', value: '4.9 g/cc' }, { name: 'Breakdown Voltage', value: '>8.0 kV/mm' }, { name: 'Operating Temperature', value: '-40°C to 100°C' }, { name: 'Magnetic Conductivity @ 1 GHz', value: '8.6' }, { name: 'Volume Resistivity', value: '>10¹² Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
+      { model: 'TCG-Gel-2000', color: 'Blue', description: 'Core single-part thermal gel for automated and manual dispensing', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }, { name: 'Flow Rate', value: '40 g/min' }, { name: 'Minimum BLT', value: '90 µm' }, { name: 'Density', value: '2.8 g/cc' }, { name: 'Breakdown Voltage', value: '8.0 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volatility', value: '0.16%' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
+      { model: 'TCG-Gel-2000LP', color: 'White', description: 'Low permittivity thermal gel for RF and signal-integrity-sensitive applications', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }, { name: 'Flow Rate', value: '40 g/min' }, { name: 'Minimum BLT', value: '60 µm' }, { name: 'Density', value: '1.7 g/cc' }, { name: 'Dielectric Constant @ 5 GHz', value: '3.7' }, { name: 'Volume Resistivity', value: '>10¹⁴ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
       { model: 'TCG-Gel-2000RW', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }] },
-      { model: 'TCG-Gel-4000', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }] },
-      { model: 'TCG-Gel-4000-LP', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }] },
+      { model: 'TCG-Gel-300AB', color: 'Black', description: 'EMI absorbent thermal gel for integrated thermal management and EMI suppression', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Flow Rate', value: '20 g/min' }, { name: 'Minimum BLT', value: '80 µm' }, { name: 'Density', value: '3.9 g/cc' }, { name: 'Breakdown Voltage', value: '>8.0 kV/mm' }, { name: 'Operating Temperature', value: '-40°C to 100°C' }, { name: 'Magnetic Conductivity @ 1 GHz', value: '3.2' }, { name: 'Volume Resistivity', value: '>10¹² Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
+      { model: 'TCG-Gel-4000', color: 'Green', description: 'Core single-part thermal gel with 4.0 W/mK thermal conductivity', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Flow Rate', value: '18 g/min' }, { name: 'Minimum BLT', value: '60 µm' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Breakdown Voltage', value: '8.0 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volatility', value: '0.11%' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
+      { model: 'TCG-Gel-4000LP', color: 'Yellow', description: 'Low permittivity thermal gel for high-frequency electronics', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Flow Rate', value: '40 g/min' }, { name: 'Minimum BLT', value: '60 µm' }, { name: 'Density', value: '1.6 g/cc' }, { name: 'Dielectric Constant @ 5 GHz', value: '3.5' }, { name: 'Volume Resistivity', value: '>10¹⁴ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
       { model: 'TCG-Gel-5000-HF', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }] },
-      { model: 'TCG-Gel-7000', specs: [{ name: 'Thermal Conductivity', value: '7.0 W/m·K' }] },
-      { model: 'TCG-Gel-10000', specs: [{ name: 'Thermal Conductivity', value: '10.0 W/m·K' }] },
-      { model: 'TCG-Gel-12000', specs: [{ name: 'Thermal Conductivity', value: '12.0 W/m·K' }] },
+      { model: 'TCG-Gel-6000', color: 'Yellow', description: 'Core single-part thermal gel with 6.0 W/mK thermal conductivity', specs: [{ name: 'Thermal Conductivity', value: '6.0 W/m·K' }, { name: 'Flow Rate', value: '35 g/min' }, { name: 'Minimum BLT', value: '150 µm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Breakdown Voltage', value: '5.0 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volatility', value: '<0.20%' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
+      { model: 'TCG-Gel-7000', color: 'Gray', description: 'Core single-part thermal gel with 7.0 W/mK thermal conductivity', specs: [{ name: 'Thermal Conductivity', value: '7.0 W/m·K' }, { name: 'Flow Rate', value: '12 g/min' }, { name: 'Minimum BLT', value: '100 µm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Breakdown Voltage', value: '8.0 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volatility', value: '0.08%' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
+      { model: 'TCG-Gel-10000', color: 'Red', description: 'Core single-part thermal gel with 10.0 W/mK thermal conductivity', specs: [{ name: 'Thermal Conductivity', value: '10.0 W/m·K' }, { name: 'Flow Rate', value: '10 g/min' }, { name: 'Minimum BLT', value: '120 µm' }, { name: 'Density', value: '3.5 g/cc' }, { name: 'Breakdown Voltage', value: '8.0 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volatility', value: '0.12%' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
+      { model: 'TCG-Gel-12000', color: 'Gray', description: 'Core single-part thermal gel with 12.0 W/mK thermal conductivity', specs: [{ name: 'Thermal Conductivity', value: '12.0 W/m·K' }, { name: 'Flow Rate', value: '10 g/min' }, { name: 'Minimum BLT', value: '120 µm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Breakdown Voltage', value: '8.0 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volatility', value: '0.13%' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
+      { model: 'TCG-Gel-15000', color: 'Gray', description: 'Core single-part thermal gel with 15.0 W/mK thermal conductivity', specs: [{ name: 'Thermal Conductivity', value: '15.0 W/m·K' }, { name: 'Flow Rate', value: '10 g/min' }, { name: 'Minimum BLT', value: '250 µm' }, { name: 'Density', value: '3.5 g/cc' }, { name: 'Breakdown Voltage', value: '8.0 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volatility', value: '0.13%' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
     ],
   },
   {
     slug: 'two-part-liquid-gap-filler',
     name: 'Two Parts Liquid Gap Filler',
     shortName: 'Two Part Gap Filler',
-    description: 'Advanced two-part liquid gap fillers for efficient heat dissipation in a range of electronic applications.',
+    description: 'Thermally conductive two-part gap fillers for efficient heat dissipation in demanding electronic assemblies.\nAvailable in ultra-thin bond-line, low-resistivity, EMI-absorbing, low-density, reworkable, and glass-bead-controlled variants.\nCompatible with automated dispensing systems. Custom formulations available.',
     image: '/images/products/two-part-gel.jpg',
     pdfFile: '/pdfs/Two-Parts-Liquid-Gap-Filler.pdf',
     applications: ['Power supplies', 'Automotive control units', 'Battery management systems', 'Power modules in EVs', 'Telecommunications', 'Industrial electronics'],
@@ -177,6 +265,7 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
     slug: 'ec-products-replace-fof',
     name: 'EC Products (Replace FoF)',
     shortName: 'EC Products',
+    hidden: true,
     description: 'Eco-friendly alternatives to traditional Foam on Fabric materials, providing superior thermal performance for electronics and automotive.',
     image: '/images/products/ec-products.jpg',
     pdfFile: '/pdfs/EC-Products-Replace-FoF.pdf',
@@ -274,29 +363,32 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
     slug: 'tcg-lo-series',
     name: 'TCG-LO Series (Low Oil Bleeding Gel)',
     shortName: 'TCG-LO Series',
-    description: 'Specially designed thermal interface gels with excellent thermal conductivity and minimal oil migration for consumer, automotive, and computing.',
+    description: 'Low-oil-bleed single-part thermal gels engineered for automated dispensing, stable thermal contact, and reliable heat dissipation across variable gap tolerances.',
     image: '/images/products/tcg-lo.jpg',
     pdfFile: '/pdfs/TCG-LO-Series-Low-Oil-Bleeding-Gels.pdf',
     applications: ['Smartphones', 'Tablets', 'Laptops', 'Wearables', 'Automotive electronics', 'Data centers'],
     commonSpecs: [
       { name: 'Operating Temperature', value: '-50°C to 200°C' },
-      { name: 'Volume Resistance', value: '10¹³ Ω·cm' },
-      { name: 'Breakdown Voltage', value: '>8 KV/mm' },
+      { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' },
       { name: 'Flammability', value: 'V-0 (UL 94)' },
-      { name: 'Oil Bleeding', value: '<1–2 mm (100°C, 24h)' },
-      { name: 'Volatility', value: '<0.08%' },
+      { name: 'Oil Bleeding', value: '<1 mm (100°C, 24h)' },
+      { name: 'Packaging', value: '30 cc (100 g) cartridge; other sizes on request' },
+      { name: 'Shelf Life', value: '24 months from date of manufacture' },
     ],
     variants: [
-      { model: 'TCG-Gel-4000LO', color: 'Green', description: 'Compact electronics - smartphones, tablets, laptops', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Min BLT', value: '0.06 mm' }, { name: 'Density', value: '~3.25 g/cc' }, { name: 'Dielectric Constant @1GHz', value: '7.5' }] },
-      { model: 'TCG-Gel-4000LOVE', color: 'Red', description: 'Color-coded for wearables, automotive, networking', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Min BLT', value: '0.06 mm' }, { name: 'Density', value: '~3.25 g/cc' }, { name: 'Dielectric Constant @1GHz', value: '8.0' }] },
-      { model: 'TCG-Gel-6000LO', color: 'Blue', description: 'High-demand - data centers, automotive heat management', specs: [{ name: 'Thermal Conductivity', value: '6.0 W/m·K' }, { name: 'Min BLT', value: '0.15 mm' }, { name: 'Density', value: '~3.3 g/cc' }, { name: 'Dielectric Constant @1GHz', value: '8.0' }] },
+      { model: 'TCG-Gel-7000LOHF', color: 'Gray', description: 'Low oil bleed; high flow rate', specs: [{ name: 'Thermal Conductivity', value: '7.0 W/m·K' }, { name: 'Flow Rate', value: '80 g/min' }, { name: 'Minimum BLT', value: '200 µm' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Breakdown Voltage', value: '5.0 kV/mm' }, { name: 'Volatility', value: '0.01%' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
+      { model: 'TCG-Gel-7000LO', color: 'Gray', description: 'Low oil bleed', specs: [{ name: 'Thermal Conductivity', value: '7.0 W/m·K' }, { name: 'Flow Rate', value: '15 g/min' }, { name: 'Minimum BLT', value: '200 µm' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Breakdown Voltage', value: '5.0 kV/mm' }, { name: 'Volatility', value: '0.01%' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
+      { model: 'TCG-Gel-6000LOVE', color: 'Gray', description: 'Low oil bleed; low volatile emissions', specs: [{ name: 'Thermal Conductivity', value: '6.0 W/m·K' }, { name: 'Flow Rate', value: '20 g/min' }, { name: 'Minimum BLT', value: '90 µm' }, { name: 'Density', value: '3.5 g/cc' }, { name: 'Breakdown Voltage', value: '8.0 kV/mm' }, { name: 'Volatility', value: '0.13%' }, { name: 'D3-D10', value: '50 ppm' }] },
+      { model: 'TCG-Gel-6000LO', color: 'Blue', description: 'Low oil bleed', specs: [{ name: 'Thermal Conductivity', value: '6.0 W/m·K' }, { name: 'Flow Rate', value: '20 g/min' }, { name: 'Minimum BLT', value: '90 µm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Breakdown Voltage', value: '8.0 kV/mm' }, { name: 'Volatility', value: '0.13%' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
+      { model: 'TCG-Gel-4000LOVE', color: 'Gray', description: 'Low oil bleed; low volatile emissions', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Flow Rate', value: '40 g/min' }, { name: 'Minimum BLT', value: '70 µm' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Breakdown Voltage', value: '8.0 kV/mm' }, { name: 'Volatility', value: '0.03%' }, { name: 'D3-D10', value: '50 ppm' }] },
+      { model: 'TCG-Gel-4000LO', color: 'Green', description: 'Low oil bleed', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Flow Rate', value: '40 g/min' }, { name: 'Minimum BLT', value: '70 µm' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Breakdown Voltage', value: '8.0 kV/mm' }, { name: 'Volatility', value: '0.15%' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
     ],
   },
   {
     slug: 'special-gap-pad',
-    name: 'Special Gap Pad (Low Density & Low Dielectric)',
-    shortName: 'Special Gap Pad',
-    description: 'Low density and low dielectric thermal pads ideal for weight-sensitive and signal-sensitive applications.',
+    name: 'Specialty Gap Pads',
+    shortName: 'Specialty Gap Pads',
+    description: 'Specially-formulated thermal gap pads for applications that require more than standard thermal conductivity. Deep Materials offers a broad specialty gap pad portfolio, including high-rebound gap pads for improved contact recovery, low-oil-seepage gap pads for cleaner long-term reliability, low-density gap pads for weight-sensitive designs, low-dielectric gap pads for signal-sensitive applications, Zero Pad materials with extremely low hardness, ultra-soft gap pads for low-stress compression, and standard gap pads for general thermal management.\n\nThese materials help engineers balance thermal performance with mechanical compliance, electrical behavior, reworkability, reliability, and assembly constraints across complex electronic systems.',
     image: '/images/products/special-gap-pad.jpg',
     pdfFile: '/pdfs/Special-Gap-Pad-Low-density-and-Low-dielectric.pdf',
     applications: ['Consumer electronics', 'Automotive', 'SSDs', 'Memory modules', 'Computing'],
@@ -308,48 +400,28 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
       { name: 'Flammability', value: 'V-0 (UL 94)' },
     ],
     variants: [
+      { model: 'Zero Pad', description: 'Zero-hardness ultra-compliant gap pad', specs: [{ name: 'Hardness', value: '0 Shore 00' }] },
+      { model: 'GFTP-600 LO', color: 'Gray', description: 'Low oil bleed gap pad engineered to minimize silicone oil migration and preserve interface cleanliness in high-reliability assemblies', specs: [{ name: 'Thermal Conductivity', value: '6.0 W/m·K' }, { name: 'Thickness', value: '0.5–10.0 mm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
+      { model: 'GFTP-510', color: 'Green', description: 'Fiberglass-reinforced gap pad for improved tear resistance, handling robustness, and dimensional stability', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }, { name: 'Thickness', value: '0.5–2.0 mm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-40°C to 180°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
+      { model: 'GFTP-500US', color: 'Green', description: 'Ultra-soft gap pad for low-pressure contact and reduced stress on sensitive components', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }, { name: 'Thickness', value: '1.0–5.0 mm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Hardness', value: '20 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
+      { model: 'GFTP-400 LP', color: 'Purple', description: 'Low dielectric gap pad for high-frequency and signal-sensitive electronic applications', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Thickness', value: '0.5–10.0 mm' }, { name: 'Density', value: '1.6 g/cc' }, { name: 'Hardness', value: '40 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volume Resistivity', value: '10¹⁴ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Dielectric Constant @ 5 GHz', value: '3.8' }] },
+      { model: 'GFTP-300HR', color: 'Pink', description: 'High rebound gap pad for repeated compression cycles and consistent contact recovery', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Thickness', value: '0.5–10.0 mm' }, { name: 'Density', value: '3.1 g/cc' }, { name: 'Hardness', value: '60 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
+      { model: 'GFTP-200HT', color: 'Gray', description: 'High temperature gap pad for sustained elevated-temperature environments', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }, { name: 'Thickness', value: '0.5–10.0 mm' }, { name: 'Density', value: '2.7 g/cc' }, { name: 'Hardness', value: '40 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 300°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
       { model: 'GFTP-200 LD', color: 'Grey', description: 'Consumer electronics and lightweight devices', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }, { name: 'Density', value: '2.0 g/cc' }, { name: 'Hardness', value: '30–50 Shore 00' }, { name: 'Dielectric Constant @1GHz', value: '5.5' }] },
       { model: 'GFTP-300 LD', color: 'Yellow', description: 'Automotive and computing applications', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Density', value: '2.3 g/cc' }, { name: 'Hardness', value: '40–70 Shore 00' }, { name: 'Dielectric Constant @1GHz', value: '7.3' }] },
-      { model: 'GFTP-300LP', color: 'Yellow', description: 'SSDs, memory modules, space-constrained devices', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Density', value: '1.6 g/cc' }, { name: 'Hardness', value: '20–70 Shore 00' }, { name: 'Dielectric Constant @1GHz', value: '3.8' }] },
+      { model: 'GFTP-300 LP', color: 'Yellow', description: 'SSDs, memory modules, space-constrained devices', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Density', value: '1.6 g/cc' }, { name: 'Hardness', value: '20–70 Shore 00' }, { name: 'Dielectric Constant @1GHz', value: '3.8' }] },
     ],
   },
   {
-    slug: 'fleximetal-and-elm',
-    name: 'FlexiMetal & ELM',
-    shortName: 'FlexiMetal & ELM',
-    description: 'High thermal conductivity materials with minimal bond line thickness for the most demanding thermal interface applications.',
+    slug: 'fleximetal',
+    name: 'FlexiMetal',
+    shortName: 'FlexiMetal',
+    description: 'Up to 35 W/mK materials with minimal bond line thickness for the most demanding thermal interface applications. FlexiMetal is available in foils for hand placement or in bulk for screen printing. FlexiMetal has all the advantages of liquid metal but without any of its drawbacks. Extensive performance and reliability data is available upon request.',
     image: '/images/products/fleximetal.jpg',
-    pdfFile: '/pdfs/FlexiMetal-and-ELM-Products.pdf',
+    video: '/videos/fleximetal-35wmk.m4v',
+    pdfFile: '',
     applications: ['Consumer electronics', 'Automotive', 'SSDs', 'Networking', 'Data centers', 'Computing'],
     variants: [
-      {
-        model: 'TCG-ELM-8000',
-        color: 'Grey',
-        description: 'Thermal grease with ultra-low BLT',
-        specs: [
-          { name: 'Thermal Conductivity', value: '8.0 W/m·K' },
-          { name: 'BLT', value: '0.025 mm' },
-          { name: 'Density', value: '5.1 g/cc' },
-          { name: 'Viscosity', value: '200,000 cps' },
-          { name: 'Operating Temperature', value: '-40°C to 150°C' },
-          { name: 'Thermal Resistance @40psi', value: '0.02 °C·cm²/W' },
-          { name: 'Volume Resistance', value: '10² Ω·cm' },
-        ],
-      },
-      {
-        model: 'TCG-ELM-10000',
-        color: 'Grey',
-        description: 'Premium thermal grease for maximum heat transfer',
-        specs: [
-          { name: 'Thermal Conductivity', value: '10.0 W/m·K' },
-          { name: 'BLT', value: '0.025 mm' },
-          { name: 'Density', value: '5.4 g/cc' },
-          { name: 'Viscosity', value: '260,000 cps' },
-          { name: 'Operating Temperature', value: '-40°C to 150°C' },
-          { name: 'Thermal Resistance @40psi', value: '0.018 °C·cm²/W' },
-          { name: 'Volume Resistance', value: '10² Ω·cm' },
-        ],
-      },
       {
         model: 'FlexiMetal\u2122',
         color: 'Silvery',
@@ -368,10 +440,14 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
   },
 ];
 
+export const VISIBLE_PRODUCT_CATEGORIES = PRODUCT_CATEGORIES.filter(
+  (product) => !product.hidden,
+);
+
 export function getProductBySlug(slug: string): ProductCategory | undefined {
-  return PRODUCT_CATEGORIES.find((p) => p.slug === slug);
+  return VISIBLE_PRODUCT_CATEGORIES.find((p) => p.slug === slug);
 }
 
 export function getAllProductSlugs(): ReadonlyArray<string> {
-  return PRODUCT_CATEGORIES.map((p) => p.slug);
+  return VISIBLE_PRODUCT_CATEGORIES.map((p) => p.slug);
 }

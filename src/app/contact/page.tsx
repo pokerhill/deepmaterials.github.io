@@ -13,32 +13,38 @@ import {
 
 const offices = [
   {
-    location: "USA HQ",
+    location: "USA Headquarters",
     address: "Silicon Valley, California",
     phone: "+1 (408) 464-8007",
-    extraContacts: [
-      {
-        city: "Houston, Texas",
-        phone: "+1 (408) 836-6751",
-      },
-    ],
+    flag: "🇺🇸",
+  },
+  {
+    location: "USA Technical Sales",
+    address: "Houston, Texas",
+    phone: "+1 (408) 836-6751",
     flag: "🇺🇸",
   },
   {
     location: "China",
-    address: "Suzhou, China",
+    address: "Changshu, Suzhou, Jiangsu",
     phone: "+86 (199) 6284-6991",
     flag: "🇨🇳",
   },
   {
     location: "Taiwan",
-    address: "Taipei, Taiwan",
+    address: "Da'an District, Taipei City",
     phone: "+886 921 786 240",
     flag: "🇹🇼",
   },
   {
     location: "India",
-    address: "Jaipur, India",
+    address: "Malviya Nagar, Jaipur\nRajasthan",
+    phone: "+91 77039 11180",
+    flag: "🇮🇳",
+  },
+  {
+    location: "India",
+    address: "Deep Materials - Resil JV\nBengaluru, Karnataka",
     phone: "+91 77039 11180",
     flag: "🇮🇳",
   },
@@ -52,6 +58,7 @@ interface FormFields {
   readonly name: string;
   readonly email: string;
   readonly company: string;
+  readonly applicationArea: string;
   readonly subject: string;
   readonly message: string;
 }
@@ -60,9 +67,21 @@ const INITIAL_FORM: FormFields = {
   name: "",
   email: "",
   company: "",
+  applicationArea: "",
   subject: "",
   message: "",
 };
+
+const APPLICATION_AREAS = [
+  "CPU / GPU",
+  "Power electronics",
+  "Battery / EV",
+  "SSD / memory",
+  "Automotive electronics",
+  "Telecom / 5G",
+  "Aerospace / defense",
+  "Other",
+] as const;
 
 /* ------------------------------------------------------------------ */
 /*  Animation helper                                                   */
@@ -112,7 +131,9 @@ export default function ContactPage() {
   const [errorMsg, setErrorMsg] = useState("");
 
   function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -179,11 +200,18 @@ export default function ContactPage() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-            <span className="text-gradient">Get in Touch</span>
+            <span className="text-gradient">
+              Need a Thermal Interface Recommendation?
+            </span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-dm-gray-light max-w-2xl mx-auto leading-relaxed">
-            Have a question about our thermal solutions? Reach out and our
-            engineering team will get back to you promptly.
+            Share your (1) application, (2) thermal target, (3) gap or
+            bond-line requirement, (4) pressure range, and (5) reliability
+            conditions.
+            <br />
+            Our applications engineering team will help identify the
+            best-fit material or custom solution and send samples for
+            qualification.
           </p>
         </motion.div>
       </section>
@@ -260,6 +288,37 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  {/* Application area */}
+                  <div>
+                    <label
+                      htmlFor="applicationArea"
+                      className="block text-sm font-medium text-dm-gray-light mb-1.5"
+                    >
+                      Application / Product Area{" "}
+                      <span className="text-dm-gray text-xs">(optional)</span>
+                    </label>
+                    <select
+                      id="applicationArea"
+                      name="applicationArea"
+                      value={form.applicationArea}
+                      onChange={handleChange}
+                      className={inputClass}
+                    >
+                      <option value="" className="bg-dm-slate text-dm-white">
+                        Select an application area
+                      </option>
+                      {APPLICATION_AREAS.map((area) => (
+                        <option
+                          key={area}
+                          value={area}
+                          className="bg-dm-slate text-dm-white"
+                        >
+                          {area}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
                   {/* Subject */}
                   <div>
                     <label
@@ -295,7 +354,7 @@ export default function ContactPage() {
                       rows={5}
                       value={form.message}
                       onChange={handleChange}
-                      placeholder="Tell us about your project or requirements..."
+                      placeholder="Please share as much of the following as possible: (1) application, (2) thermal target, (3) gap or bond-line requirement, (4) pressure range, and (5) reliability conditions."
                       className={inputClass + " resize-none"}
                     />
                   </div>
@@ -333,7 +392,7 @@ export default function ContactPage() {
                     Email Us Directly
                   </p>
                   <a
-                    href="mailto:sales@deep-materials.com"
+                    href="mailto:sales@deep-materials.com?subject=DM%20Technical%20Sales%20Inquiry"
                     className="text-xl sm:text-2xl font-semibold text-gradient hover:opacity-80 transition-opacity"
                   >
                     sales@deep-materials.com
@@ -348,7 +407,7 @@ export default function ContactPage() {
 
                   {offices.map((office, idx) => (
                     <FadeInSection
-                      key={office.location}
+                      key={`${office.location}-${office.address}`}
                       delay={0.2 + idx * 0.08}
                     >
                       <div className="glass hover-glow rounded-xl p-5">
@@ -360,31 +419,20 @@ export default function ContactPage() {
                             <h4 className="text-dm-white font-medium">
                               {office.location}
                             </h4>
-                            <p className="text-dm-gray text-sm mt-1 leading-relaxed">
+                            <p className="text-dm-gray text-sm mt-1 leading-relaxed whitespace-pre-line">
                               {office.address}
                             </p>
-                            <a
-                              href={`tel:${office.phone.replace(/\s/g, "")}`}
-                              className="text-dm-accent text-sm mt-1.5 inline-block hover:text-dm-accent-light transition-colors"
-                            >
-                              {office.phone}
-                            </a>
-                            {"extraContacts" in office && (
-                              <div className="mt-3 space-y-1">
-                                {office.extraContacts.map((contact) => (
-                                  <div key={contact.city}>
-                                    <p className="text-dm-gray text-sm leading-relaxed">
-                                      {contact.city}
-                                    </p>
-                                    <a
-                                      href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                                      className="text-dm-accent text-sm mt-1.5 inline-block hover:text-dm-accent-light transition-colors"
-                                    >
-                                      {contact.phone}
-                                    </a>
-                                  </div>
-                                ))}
-                              </div>
+                            {office.phone.startsWith("+") ? (
+                              <a
+                                href={`tel:${office.phone.replace(/\s/g, "")}`}
+                                className="text-dm-accent text-sm mt-1.5 inline-block hover:text-dm-accent-light transition-colors"
+                              >
+                                {office.phone}
+                              </a>
+                            ) : (
+                              <p className="text-dm-gray text-sm mt-1.5">
+                                {office.phone}
+                              </p>
                             )}
                           </div>
                         </div>
