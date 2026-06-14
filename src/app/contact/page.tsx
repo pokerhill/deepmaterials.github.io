@@ -218,7 +218,7 @@ export default function ContactPage() {
       </section>
 
       {/* ---- Contact form + office info ---- */}
-      <section className="py-20 bg-dm-navy">
+      <section id="contact-form" className="py-20 bg-dm-navy">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-5 gap-12">
             {/* Left column - form (3/5) */}

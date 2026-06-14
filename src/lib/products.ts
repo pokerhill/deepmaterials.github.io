@@ -8,6 +8,7 @@ export interface ProductVariant {
   readonly specs: ReadonlyArray<ProductSpec>;
   readonly description?: string;
   readonly color?: string;
+  readonly pdfFile?: string;
 }
 
 export interface ProductCategory {
@@ -32,7 +33,7 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
     shortName: 'Thermal Grease',
     description: 'High-performance thermal grease for heat transfer between heat-generating components and heat sinks in modern electronics.',
     image: '/images/products/thermal-grease.jpg',
-    pdfFile: '/pdfs/Thermal-Grease.pdf',
+    pdfFile: '/pdfs/TCG-Grease-6000.pdf',
     applications: ['Computer processors', 'Power semiconductors', 'LED systems', 'Automotive electronics', 'Telecommunications', 'Audio/video devices'],
     specHeaders: ['Property', 'TCG-2000', 'TCG-2000S', 'TCG-3500', 'TCG-5000', 'TCG-6000'],
     variants: [
@@ -190,7 +191,7 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
     shortName: 'Single Part Gap Filler',
     description: 'Thermally conductive gap fillers for reliable heat transfer in compact devices.\nAvailable in low-oil-bleed, low-outgassing, high-flow, low-permittivity, and EMI-absorbing variants.\nCompatible with automated dispensing systems.',
     image: '/images/products/single-part-gel.jpg',
-    pdfFile: '/pdfs/Single-Part-Liquid-Gap-Filler.pdf',
+    pdfFile: '/pdfs/TCG-Gel-15000.pdf',
     applications: ['Smartphones', 'Tablets', 'Laptops', 'Power supplies', 'Automotive electronics', 'Telecommunications'],
     commonSpecs: [
       { name: 'Operating Temperature', value: '-50°C to 200°C' },
@@ -201,11 +202,9 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
       { model: 'TCG-Gel-140AB', color: 'Black', description: 'EMI absorbent thermal gel for RF and high-frequency electronics', specs: [{ name: 'Thermal Conductivity', value: '1.4 W/m·K' }, { name: 'Flow Rate', value: '20 g/min' }, { name: 'Minimum BLT', value: '20 µm' }, { name: 'Density', value: '4.9 g/cc' }, { name: 'Breakdown Voltage', value: '>8.0 kV/mm' }, { name: 'Operating Temperature', value: '-40°C to 100°C' }, { name: 'Magnetic Conductivity @ 1 GHz', value: '8.6' }, { name: 'Volume Resistivity', value: '>10¹² Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
       { model: 'TCG-Gel-2000', color: 'Blue', description: 'Core single-part thermal gel for automated and manual dispensing', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }, { name: 'Flow Rate', value: '40 g/min' }, { name: 'Minimum BLT', value: '90 µm' }, { name: 'Density', value: '2.8 g/cc' }, { name: 'Breakdown Voltage', value: '8.0 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volatility', value: '0.16%' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
       { model: 'TCG-Gel-2000LP', color: 'White', description: 'Low permittivity thermal gel for RF and signal-integrity-sensitive applications', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }, { name: 'Flow Rate', value: '40 g/min' }, { name: 'Minimum BLT', value: '60 µm' }, { name: 'Density', value: '1.7 g/cc' }, { name: 'Dielectric Constant @ 5 GHz', value: '3.7' }, { name: 'Volume Resistivity', value: '>10¹⁴ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
-      { model: 'TCG-Gel-2000RW', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }] },
       { model: 'TCG-Gel-300AB', color: 'Black', description: 'EMI absorbent thermal gel for integrated thermal management and EMI suppression', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Flow Rate', value: '20 g/min' }, { name: 'Minimum BLT', value: '80 µm' }, { name: 'Density', value: '3.9 g/cc' }, { name: 'Breakdown Voltage', value: '>8.0 kV/mm' }, { name: 'Operating Temperature', value: '-40°C to 100°C' }, { name: 'Magnetic Conductivity @ 1 GHz', value: '3.2' }, { name: 'Volume Resistivity', value: '>10¹² Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
       { model: 'TCG-Gel-4000', color: 'Green', description: 'Core single-part thermal gel with 4.0 W/mK thermal conductivity', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Flow Rate', value: '18 g/min' }, { name: 'Minimum BLT', value: '60 µm' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Breakdown Voltage', value: '8.0 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volatility', value: '0.11%' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
       { model: 'TCG-Gel-4000LP', color: 'Yellow', description: 'Low permittivity thermal gel for high-frequency electronics', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Flow Rate', value: '40 g/min' }, { name: 'Minimum BLT', value: '60 µm' }, { name: 'Density', value: '1.6 g/cc' }, { name: 'Dielectric Constant @ 5 GHz', value: '3.5' }, { name: 'Volume Resistivity', value: '>10¹⁴ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
-      { model: 'TCG-Gel-5000-HF', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }] },
       { model: 'TCG-Gel-6000', color: 'Yellow', description: 'Core single-part thermal gel with 6.0 W/mK thermal conductivity', specs: [{ name: 'Thermal Conductivity', value: '6.0 W/m·K' }, { name: 'Flow Rate', value: '35 g/min' }, { name: 'Minimum BLT', value: '150 µm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Breakdown Voltage', value: '5.0 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volatility', value: '<0.20%' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
       { model: 'TCG-Gel-7000', color: 'Gray', description: 'Core single-part thermal gel with 7.0 W/mK thermal conductivity', specs: [{ name: 'Thermal Conductivity', value: '7.0 W/m·K' }, { name: 'Flow Rate', value: '12 g/min' }, { name: 'Minimum BLT', value: '100 µm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Breakdown Voltage', value: '8.0 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volatility', value: '0.08%' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
       { model: 'TCG-Gel-10000', color: 'Red', description: 'Core single-part thermal gel with 10.0 W/mK thermal conductivity', specs: [{ name: 'Thermal Conductivity', value: '10.0 W/m·K' }, { name: 'Flow Rate', value: '10 g/min' }, { name: 'Minimum BLT', value: '120 µm' }, { name: 'Density', value: '3.5 g/cc' }, { name: 'Breakdown Voltage', value: '8.0 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volatility', value: '0.12%' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Heat Capacity', value: '1.1 J/g' }] },
@@ -219,7 +218,7 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
     shortName: 'Two Part Gap Filler',
     description: 'Thermally conductive two-part gap fillers for efficient heat dissipation in demanding electronic assemblies.\nAvailable in ultra-thin bond-line, low-resistivity, EMI-absorbing, low-density, reworkable, and glass-bead-controlled variants.\nCompatible with automated dispensing systems. Custom formulations available.',
     image: '/images/products/two-part-gel.jpg',
-    pdfFile: '/pdfs/Two-Parts-Liquid-Gap-Filler.pdf',
+    pdfFile: '/pdfs/TPGF-1200.pdf',
     applications: ['Power supplies', 'Automotive control units', 'Battery management systems', 'Power modules in EVs', 'Telecommunications', 'Industrial electronics'],
     commonSpecs: [
       { name: 'Mixing Ratio', value: '1:1' },
@@ -227,12 +226,26 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
       { name: 'Curing Time @ 25°C', value: '24 hours' },
     ],
     variants: [
-      { model: 'TPGF-180-LD', specs: [{ name: 'Thermal Conductivity', value: '1.8 W/m·K' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }] },
-      { model: 'TPGF-200', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }] },
-      { model: 'TPGF-200LP-RW', description: 'Easy peel without residue (reworkable)', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }] },
-      { model: 'TPGF-300-RW', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }] },
-      { model: 'TPGF-350', specs: [{ name: 'Thermal Conductivity', value: '3.5 W/m·K' }, { name: 'Operating Temperature', value: '-50°C to 150°C' }] },
-      { model: 'TPGF-500', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }, { name: 'Operating Temperature', value: '-50°C to 150°C' }] },
+      { model: 'TPGF-1200', color: 'Gray / Gray', specs: [{ name: 'Thermal Conductivity', value: '12.0 W/m·K' }, { name: 'Minimum BLT', value: '250 µm' }, { name: 'Hardness', value: '60 Shore 00' }, { name: 'Density', value: '3.5 g/cc' }, { name: 'Viscosity', value: '350,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-1000', color: 'Gray / Gray', specs: [{ name: 'Thermal Conductivity', value: '10.0 W/m·K' }, { name: 'Minimum BLT', value: '180 µm' }, { name: 'Hardness', value: '60 Shore 00' }, { name: 'Density', value: '3.4 g/cc' }, { name: 'Viscosity', value: '400,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-800', color: 'Gray / White', specs: [{ name: 'Thermal Conductivity', value: '8.0 W/m·K' }, { name: 'Minimum BLT', value: '170 µm' }, { name: 'Hardness', value: '60 Shore 00' }, { name: 'Density', value: '3.5 g/cc' }, { name: 'Viscosity', value: '350,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-600', color: 'Gray / White', specs: [{ name: 'Thermal Conductivity', value: '6.0 W/m·K' }, { name: 'Minimum BLT', value: '100 µm' }, { name: 'Hardness', value: '60 Shore 00' }, { name: 'Density', value: '3.4 g/cc' }, { name: 'Viscosity', value: '300,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-600LV', color: 'Gray / White', specs: [{ name: 'Thermal Conductivity', value: '6.0 W/m·K' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Density', value: '3.4 g/cc' }, { name: 'Viscosity', value: '400,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-500', color: 'Green / White', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }, { name: 'Minimum BLT', value: '150 µm' }, { name: 'Hardness', value: '60 Shore 00' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Viscosity', value: '280,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-500G', color: 'Green / White', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }, { name: 'Minimum BLT', value: '250 µm' }, { name: 'Hardness', value: '45 Shore 00' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Viscosity', value: '350,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Working Time @ 25°C', value: '2 h' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-500LV', color: 'Gray / White', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Viscosity', value: '350,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-400', color: 'Pink / White', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Minimum BLT', value: '130 µm' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Viscosity', value: '310,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-400S', color: 'Pink / White', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Minimum BLT', value: '30 µm' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Density', value: '3.4 g/cc' }, { name: 'Viscosity', value: '150,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-400AB', color: 'Black / Black', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Minimum BLT', value: '130 µm' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Density', value: '4.0 g/cc' }, { name: 'Viscosity', value: '300,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 100°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }, { name: 'EMI Attenuation @ 10 GHz', value: '14.5' }, { name: 'EMI Attenuation @ 20 GHz', value: '28' }] },
+      { model: 'TPGF-400LV', color: 'Gray / White', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Viscosity', value: '250,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-350', color: 'Blue / White', specs: [{ name: 'Thermal Conductivity', value: '3.5 W/m·K' }, { name: 'Minimum BLT', value: '130 µm' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Viscosity', value: '250,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-350S', color: 'Blue / White', specs: [{ name: 'Thermal Conductivity', value: '3.5 W/m·K' }, { name: 'Minimum BLT', value: '90 µm' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Viscosity', value: '350,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-350LV', color: 'Gray / White', specs: [{ name: 'Thermal Conductivity', value: '3.5 W/m·K' }, { name: 'Hardness', value: '90 Shore 00' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Viscosity', value: '350,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-300', color: 'Blue / White', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Minimum BLT', value: '110 µm' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Viscosity', value: '250,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-300S', color: 'Gray / Gray', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Minimum BLT', value: '20 µm' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Density', value: '2.4 g/cc' }, { name: 'Viscosity', value: '250,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10⁸ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-300LV', color: 'Gray / White', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Density', value: '3.0 g/cc' }, { name: 'Viscosity', value: '200,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-250', color: 'Yellow / White', specs: [{ name: 'Thermal Conductivity', value: '2.5 W/m·K' }, { name: 'Minimum BLT', value: '100 µm' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Density', value: '3.0 g/cc' }, { name: 'Viscosity', value: '200,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
+      { model: 'TPGF-200LD', color: 'Red / White', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }, { name: 'Minimum BLT', value: '100 µm' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Density', value: '2.0 g/cc' }, { name: 'Viscosity', value: '150,000 cps' }, { name: 'Operating Temperature', value: '-50°C to 150°C' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Volume Resistivity', value: '>10¹³ Ω·cm' }, { name: 'Curing Time @ 25°C', value: '24 h' }, { name: 'Curing Time @ 100°C', value: '10 min' }] },
     ],
   },
   {
@@ -241,7 +254,7 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
     shortName: 'Gap Pads',
     description: 'Soft, conformable thermal pads designed to bridge gaps between electronic components and heat sinks with uniform heat transfer.',
     image: '/images/products/gap-pads.jpg',
-    pdfFile: '/pdfs/Gap-Pads.pdf',
+    pdfFile: '/pdfs/GFTP-1500.pdf',
     applications: ['Consumer electronics', 'Power systems', 'Telecommunications', 'LED modules', 'Automotive controls', 'Battery management'],
     commonSpecs: [
       { name: 'Operating Temperature', value: '-50°C to 200°C' },
@@ -250,7 +263,6 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
       { name: 'Flammability', value: 'V-0 (UL 94)' },
     ],
     variants: [
-      { model: 'GFTP-200T', color: 'White + Grey', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }, { name: 'Density', value: '2.0 g/cc' }, { name: 'Hardness', value: '30 Shore 00' }, { name: 'Thickness', value: '0.5–10.0 mm' }] },
       { model: 'GFTP-200', color: 'Light Grey', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }, { name: 'Density', value: '2.8 g/cc' }, { name: 'Hardness', value: '30 Shore 00' }, { name: 'Thickness', value: '0.5–10.0 mm' }] },
       { model: 'GFTP-300', color: 'Light Blue', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Density', value: '2.9 g/cc' }, { name: 'Hardness', value: '45 Shore 00' }, { name: 'Thickness', value: '0.5–10.0 mm' }] },
       { model: 'GFTP-500', color: 'Green', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }, { name: 'Density', value: '3.1 g/cc' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Thickness', value: '0.5–10.0 mm' }] },
@@ -306,7 +318,7 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
     shortName: 'Potting Materials',
     description: 'Encapsulation materials with thermal conductivity and mechanical protection for automotive, industrial, and networking applications.',
     image: '/images/products/potting.jpg',
-    pdfFile: '/pdfs/Potting-Materials.pdf',
+    pdfFile: '/pdfs/PT-400.pdf',
     applications: ['Automotive', 'Industrial', 'Networking', 'Power electronics'],
     commonSpecs: [
       { name: 'Mixing Ratio', value: '1:1' },
@@ -340,11 +352,11 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
   },
   {
     slug: 'gftp-lo-series',
-    name: 'GFTP-LO Series (Low Oil Bleeding Pad)',
+    name: 'Low Oil Bleed Pads',
     shortName: 'GFTP-LO Series',
     description: 'Low-oil-bleed thermal interface pads engineered for controlled conformal flow under compression, improving surface wet-out and gap filling while minimizing silicone oil migration.',
     image: '/images/products/gftp-lo.jpg',
-    pdfFile: '/pdfs/GFTP-LO-Series-Low-Oil-Bleeding-Pad.pdf',
+    pdfFile: '/pdfs/GFTP-600LO.pdf',
     applications: ['Telecommunications', 'Automotive control systems', 'Power modules', 'Computing', 'Networking'],
     commonSpecs: [
       { name: 'Operating Temperature', value: '-50°C to 200°C' },
@@ -353,19 +365,19 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
       { name: 'Thickness', value: '0.5–10.0 mm' },
     ],
     variants: [
-      { model: 'GFTP-300 LO', color: 'Blue', description: 'Entry-level, ideal for telecom and automotive control', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Density', value: '3.0 g/cc' }, { name: 'Hardness', value: '30–70 Shore 00' }, { name: 'Volume Resistance', value: '10¹⁴ Ω·cm' }] },
-      { model: 'GFTP-400 LO', color: 'Green', description: 'Mid-tier for automotive and telecom', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Density', value: '3.1 g/cc' }, { name: 'Hardness', value: '40–70 Shore 00' }, { name: 'Volume Resistance', value: '10¹³ Ω·cm' }] },
-      { model: 'GFTP-500 LO', color: 'Grey', description: 'High-performance computing and advanced automotive', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Hardness', value: '40–70 Shore 00' }, { name: 'Volume Resistance', value: '10¹³ Ω·cm' }] },
-      { model: 'GFTP-600 LO', color: 'Grey', description: 'Premium tier for most demanding applications', specs: [{ name: 'Thermal Conductivity', value: '6.0 W/m·K' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Hardness', value: '40–70 Shore 00' }, { name: 'Volume Resistance', value: '10¹³ Ω·cm' }] },
+      { model: 'GFTP-600LO', color: 'Grey', description: 'Premium tier for most demanding applications', specs: [{ name: 'Thermal Conductivity', value: '6.0 W/m·K' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Hardness', value: '40–70 Shore 00' }, { name: 'Volume Resistance', value: '10¹³ Ω·cm' }] },
+      { model: 'GFTP-500LO', color: 'Grey', description: 'High-performance computing and advanced automotive', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }, { name: 'Density', value: '3.2 g/cc' }, { name: 'Hardness', value: '40–70 Shore 00' }, { name: 'Volume Resistance', value: '10¹³ Ω·cm' }] },
+      { model: 'GFTP-400LO', color: 'Green', description: 'Mid-tier for automotive and telecom', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Density', value: '3.1 g/cc' }, { name: 'Hardness', value: '40–70 Shore 00' }, { name: 'Volume Resistance', value: '10¹³ Ω·cm' }] },
+      { model: 'GFTP-300LO', color: 'Blue', description: 'Entry-level, ideal for telecom and automotive control', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Density', value: '3.0 g/cc' }, { name: 'Hardness', value: '30–70 Shore 00' }, { name: 'Volume Resistance', value: '10¹⁴ Ω·cm' }] },
     ],
   },
   {
     slug: 'tcg-lo-series',
-    name: 'TCG-LO Series (Low Oil Bleeding Gel)',
+    name: 'Low Oil Bleed Gels',
     shortName: 'TCG-LO Series',
     description: 'Low-oil-bleed single-part thermal gels engineered for automated dispensing, stable thermal contact, and reliable heat dissipation across variable gap tolerances.',
     image: '/images/products/tcg-lo.jpg',
-    pdfFile: '/pdfs/TCG-LO-Series-Low-Oil-Bleeding-Gels.pdf',
+    pdfFile: '/pdfs/TCG-Gel-6000LOVE.pdf',
     applications: ['Smartphones', 'Tablets', 'Laptops', 'Wearables', 'Automotive electronics', 'Data centers'],
     commonSpecs: [
       { name: 'Operating Temperature', value: '-50°C to 200°C' },
@@ -400,16 +412,14 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
       { name: 'Flammability', value: 'V-0 (UL 94)' },
     ],
     variants: [
-      { model: 'Zero Pad', description: 'Zero-hardness ultra-compliant gap pad', specs: [{ name: 'Hardness', value: '0 Shore 00' }] },
-      { model: 'GFTP-600 LO', color: 'Gray', description: 'Low oil bleed gap pad engineered to minimize silicone oil migration and preserve interface cleanliness in high-reliability assemblies', specs: [{ name: 'Thermal Conductivity', value: '6.0 W/m·K' }, { name: 'Thickness', value: '0.5–10.0 mm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
-      { model: 'GFTP-510', color: 'Green', description: 'Fiberglass-reinforced gap pad for improved tear resistance, handling robustness, and dimensional stability', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }, { name: 'Thickness', value: '0.5–2.0 mm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-40°C to 180°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
-      { model: 'GFTP-500US', color: 'Green', description: 'Ultra-soft gap pad for low-pressure contact and reduced stress on sensitive components', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }, { name: 'Thickness', value: '1.0–5.0 mm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Hardness', value: '20 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
-      { model: 'GFTP-400 LP', color: 'Purple', description: 'Low dielectric gap pad for high-frequency and signal-sensitive electronic applications', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Thickness', value: '0.5–10.0 mm' }, { name: 'Density', value: '1.6 g/cc' }, { name: 'Hardness', value: '40 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volume Resistivity', value: '10¹⁴ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Dielectric Constant @ 5 GHz', value: '3.8' }] },
-      { model: 'GFTP-300HR', color: 'Pink', description: 'High rebound gap pad for repeated compression cycles and consistent contact recovery', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Thickness', value: '0.5–10.0 mm' }, { name: 'Density', value: '3.1 g/cc' }, { name: 'Hardness', value: '60 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
-      { model: 'GFTP-200HT', color: 'Gray', description: 'High temperature gap pad for sustained elevated-temperature environments', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }, { name: 'Thickness', value: '0.5–10.0 mm' }, { name: 'Density', value: '2.7 g/cc' }, { name: 'Hardness', value: '40 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 300°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
-      { model: 'GFTP-200 LD', color: 'Grey', description: 'Consumer electronics and lightweight devices', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }, { name: 'Density', value: '2.0 g/cc' }, { name: 'Hardness', value: '30–50 Shore 00' }, { name: 'Dielectric Constant @1GHz', value: '5.5' }] },
-      { model: 'GFTP-300 LD', color: 'Yellow', description: 'Automotive and computing applications', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Density', value: '2.3 g/cc' }, { name: 'Hardness', value: '40–70 Shore 00' }, { name: 'Dielectric Constant @1GHz', value: '7.3' }] },
-      { model: 'GFTP-300 LP', color: 'Yellow', description: 'SSDs, memory modules, space-constrained devices', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Density', value: '1.6 g/cc' }, { name: 'Hardness', value: '20–70 Shore 00' }, { name: 'Dielectric Constant @1GHz', value: '3.8' }] },
+      { model: 'GFTP-600LO', color: 'Gray', description: 'Low oil bleed gap pad engineered to minimize silicone oil migration and preserve interface cleanliness in high-reliability assemblies', pdfFile: '/pdfs/specialty-pads/GFTP-600LO.pdf', specs: [{ name: 'Thermal Conductivity', value: '6.0 W/m·K' }, { name: 'Thickness', value: '0.5–10.0 mm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
+      { model: 'GFTP-510', color: 'Green', description: 'Fiberglass-reinforced gap pad for improved tear resistance, handling robustness, and dimensional stability', pdfFile: '/pdfs/specialty-pads/GFTP-510.pdf', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }, { name: 'Thickness', value: '0.5–2.0 mm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Hardness', value: '50 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-40°C to 180°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
+      { model: 'GFTP-500US', color: 'Green', description: 'Ultra-soft gap pad for low-pressure contact and reduced stress on sensitive components', pdfFile: '/pdfs/specialty-pads/GFTP-500US.pdf', specs: [{ name: 'Thermal Conductivity', value: '5.0 W/m·K' }, { name: 'Thickness', value: '1.0–5.0 mm' }, { name: 'Density', value: '3.3 g/cc' }, { name: 'Hardness', value: '20 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
+      { model: 'GFTP-400LP', color: 'Purple', description: 'Low dielectric gap pad for high-frequency and signal-sensitive electronic applications', pdfFile: '/pdfs/specialty-pads/GFTP-400LP.pdf', specs: [{ name: 'Thermal Conductivity', value: '4.0 W/m·K' }, { name: 'Thickness', value: '0.5–10.0 mm' }, { name: 'Density', value: '1.6 g/cc' }, { name: 'Hardness', value: '40 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volume Resistivity', value: '10¹⁴ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }, { name: 'Dielectric Constant @ 5 GHz', value: '3.8' }] },
+      { model: 'GFTP-300AB', color: 'Black', description: 'EMI absorbent specialty gap pad for combined thermal management and electromagnetic noise reduction', pdfFile: '/pdfs/specialty-pads/GFTP-300AB.pdf', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }] },
+      { model: 'GFTP-300HR', color: 'Pink', description: 'High rebound gap pad for repeated compression cycles and consistent contact recovery', pdfFile: '/pdfs/specialty-pads/GFTP-300HR.pdf', specs: [{ name: 'Thermal Conductivity', value: '3.0 W/m·K' }, { name: 'Thickness', value: '0.5–10.0 mm' }, { name: 'Density', value: '3.1 g/cc' }, { name: 'Hardness', value: '60 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 200°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
+      { model: 'GFTP-200HT', color: 'Gray', description: 'High temperature gap pad for sustained elevated-temperature environments', pdfFile: '/pdfs/specialty-pads/GFTP-200HT.pdf', specs: [{ name: 'Thermal Conductivity', value: '2.0 W/m·K' }, { name: 'Thickness', value: '0.5–10.0 mm' }, { name: 'Density', value: '2.7 g/cc' }, { name: 'Hardness', value: '40 Shore 00' }, { name: 'Breakdown Voltage', value: '>10 kV/mm' }, { name: 'Operating Temperature', value: '-50°C to 300°C' }, { name: 'Volume Resistivity', value: '10¹³ Ω·cm' }, { name: 'Flammability', value: 'V-0 (UL 94)' }] },
+      { model: 'GFTP-X00ZERO', description: 'Zero-hardness ultra-compliant gap pad', specs: [{ name: 'Hardness', value: '0 Shore 00' }] },
     ],
   },
   {
@@ -419,7 +429,7 @@ export const PRODUCT_CATEGORIES: ReadonlyArray<ProductCategory> = [
     description: 'Up to 35 W/mK materials with minimal bond line thickness for the most demanding thermal interface applications. FlexiMetal is available in foils for hand placement or in bulk for screen printing. FlexiMetal has all the advantages of liquid metal but without any of its drawbacks. Extensive performance and reliability data is available upon request.',
     image: '/images/products/fleximetal.jpg',
     video: '/videos/fleximetal-35wmk.m4v',
-    pdfFile: '',
+    pdfFile: '/pdfs/FlexiMetal-9.1-Foil.pdf',
     applications: ['Consumer electronics', 'Automotive', 'SSDs', 'Networking', 'Data centers', 'Computing'],
     variants: [
       {

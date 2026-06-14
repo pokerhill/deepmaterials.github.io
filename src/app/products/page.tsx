@@ -23,6 +23,13 @@ const orderedProducts = PRODUCT_ORDER.map((orderedSlug) =>
   VISIBLE_PRODUCT_CATEGORIES.find(({ slug }) => slug === orderedSlug),
 ).filter((product): product is ProductCategory => Boolean(product));
 
+const getProductsBySlug = (slugs: readonly string[]) =>
+  slugs
+    .map((slug) =>
+      VISIBLE_PRODUCT_CATEGORIES.find((product) => product.slug === slug),
+    )
+    .filter((product): product is ProductCategory => Boolean(product));
+
 const LOW_BLT_PRODUCT_COUNT = 3;
 const GAP_FILLER_PRODUCT_COUNT = 2;
 const lowBltProducts = orderedProducts.slice(0, LOW_BLT_PRODUCT_COUNT);
@@ -30,9 +37,14 @@ const gapFillerProducts = orderedProducts.slice(
   LOW_BLT_PRODUCT_COUNT,
   LOW_BLT_PRODUCT_COUNT + GAP_FILLER_PRODUCT_COUNT,
 );
-const gapPadProducts = orderedProducts.slice(
-  LOW_BLT_PRODUCT_COUNT + GAP_FILLER_PRODUCT_COUNT,
-);
+const gapPadProducts = getProductsBySlug([
+  "gap-pads",
+  "special-gap-pad",
+  "gftp-lo-series",
+  "insulating-pads",
+]);
+const lowOilBleedPadProducts = getProductsBySlug(["tcg-lo-series"]);
+const pottingProducts = getProductsBySlug(["potting-materials"]);
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -219,6 +231,40 @@ export default function ProductsPage() {
             <ProductCard key={product.slug} product={product} />
           ))}
         </motion.div>
+
+        {/* Low Oil Bleed Pads */}
+        <div className="mt-10">
+          <ProductGroupHeader label="Low Oil Bleed Pads" />
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            {lowOilBleedPadProducts.map((product) => (
+              <ProductCard key={product.slug} product={product} />
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Potting Materials */}
+        <div className="mt-10">
+          <ProductGroupHeader label="Potting Materials" />
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            {pottingProducts.map((product) => (
+              <ProductCard key={product.slug} product={product} />
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
