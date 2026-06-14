@@ -291,11 +291,57 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <FadeInSection delay={0.1}>
-              <img
-                src="/images/hero/sustain.jpg"
-                alt="Quality and sustainability at Deep Materials"
-                className="rounded-2xl w-full h-80 object-cover shadow-lg shadow-dm-accent/10"
-              />
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  {
+                    icon: (
+                      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    ),
+                    label: "RoHS Compliant",
+                    sub: "Restriction of hazardous substances",
+                  },
+                  {
+                    icon: (
+                      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253" />
+                      </svg>
+                    ),
+                    label: "REACH Compliant",
+                    sub: "Chemical safety & registration",
+                  },
+                  {
+                    icon: (
+                      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+                      </svg>
+                    ),
+                    label: "Low Outgassing",
+                    sub: "Safe for sensitive assemblies",
+                  },
+                  {
+                    icon: (
+                      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1 1 .03 2.698-1.382 2.698H4.182c-1.412 0-2.382-1.698-1.382-2.698L4.8 15.3" />
+                      </svg>
+                    ),
+                    label: "Reduced Oil Bleed",
+                    sub: "Consistent lot-to-lot quality",
+                  },
+                ].map(({ icon, label, sub }) => (
+                  <div
+                    key={label}
+                    className="glass glow-border rounded-2xl p-5 flex flex-col gap-3"
+                  >
+                    <span className="text-dm-accent">{icon}</span>
+                    <div>
+                      <p className="text-dm-white font-semibold text-sm">{label}</p>
+                      <p className="text-dm-gray text-xs mt-0.5 leading-relaxed">{sub}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </FadeInSection>
             <FadeInSection delay={0.2}>
               <h2 className="text-3xl sm:text-4xl font-bold text-dm-white mb-6">

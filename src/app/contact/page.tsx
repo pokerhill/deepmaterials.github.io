@@ -167,6 +167,7 @@ export default function ContactPage() {
           name: form.name,
           email: form.email,
           company: form.company,
+          applicationArea: form.applicationArea,
           subject: form.subject,
           message: form.message,
           page: typeof window !== "undefined" ? window.location.href : "",
