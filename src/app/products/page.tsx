@@ -96,7 +96,6 @@ function ProductCard({ product }: { readonly product: ProductCategory }) {
           {product.video ? (
             <video
               src={product.video}
-              poster={product.image}
               autoPlay
               loop
               muted

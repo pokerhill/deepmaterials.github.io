@@ -126,7 +126,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             <div className="w-full max-w-[476px] justify-self-center rounded-2xl overflow-hidden shadow-lg shadow-dm-accent/10 bg-dm-midnight">
               <video
                 src={product.video}
-                poster={product.image}
                 autoPlay
                 loop
                 muted
