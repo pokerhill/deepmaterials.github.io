@@ -77,13 +77,14 @@ function handleDownload(data) {
 
 function handleContact(data) {
   var sheet = getOrCreateSheet(CONTACT_SHEET, [
-    'Received', 'Name', 'Email', 'Company', 'Subject', 'Message', 'Page',
+    'Received', 'Name', 'Email', 'Company', 'Application Area', 'Subject', 'Message', 'Page',
   ]);
   sheet.appendRow([
     new Date(),
     data.name || '',
     data.email || '',
     data.company || '',
+    data.applicationArea || '',
     data.subject || '',
     data.message || '',
     data.page || '',
@@ -99,6 +100,7 @@ function handleContact(data) {
         'Name:    ' + (data.name || '') + '\n' +
         'Email:   ' + (data.email || '') + '\n' +
         'Company: ' + (data.company || '') + '\n' +
+        'Application Area: ' + (data.applicationArea || '') + '\n' +
         'Subject: ' + (data.subject || '') + '\n\n' +
         (data.message || ''),
     };

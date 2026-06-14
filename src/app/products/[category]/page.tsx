@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { PRODUCT_CATEGORIES, getProductBySlug } from "@/lib/products";
+import { getAllProductSlugs, getProductBySlug } from "@/lib/products";
 import ProductDetail from "@/components/products/ProductDetail";
 
 export function generateStaticParams() {
-  return PRODUCT_CATEGORIES.map((p) => ({ category: p.slug }));
+  return getAllProductSlugs().map((category) => ({ category }));
 }
 
 interface PageProps {

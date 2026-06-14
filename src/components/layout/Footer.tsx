@@ -10,18 +10,20 @@ const PRODUCT_LINKS = [
 ] as const;
 
 const INDUSTRY_LINKS = [
-  { href: "/applications", label: "Computing" },
+  { href: "/applications", label: "AI & Data Center Hardware" },
+  { href: "/applications", label: "Automotive & EV Electronics" },
   { href: "/applications", label: "Consumer Electronics" },
-  { href: "/applications", label: "Automotive" },
-  { href: "/applications", label: "Telecommunications" },
-  { href: "/applications", label: "LED Lighting" },
+  { href: "/applications", label: "Telecom & Networking" },
+  { href: "/applications", label: "Power Electronics & Energy Systems" },
+  { href: "/applications", label: "Industrial & Medical Devices" },
 ] as const;
 
 const OFFICES = [
-  { region: "USA", city: "Silicon Valley, Texas" },
-  { region: "China", city: "Suzhou" },
-  { region: "Taiwan", city: "Taipei" },
-  { region: "India", city: "Jaipur" },
+  "Silicon Valley, California\nHouston, Texas",
+  "Changshu, Suzhou, Jiangsu",
+  "Da'an District, Taipei City",
+  "Malviya Nagar, Jaipur\nRajasthan",
+  "Deep Materials - Resil JV\nBengaluru, Karnataka",
 ] as const;
 
 export default function Footer() {
@@ -87,10 +89,18 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-dm-gray">
               <li>
                 <a
-                  href="mailto:sales@deep-materials.com"
+                  href="mailto:sales@deep-materials.com?subject=DM%20Technical%20Sales%20Inquiry"
                   className="hover:text-dm-accent transition-colors duration-200"
                 >
-                  sales@deep-materials.com
+                  Sales@Deep-Materials.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+14088366751"
+                  className="hover:text-dm-accent transition-colors duration-200"
+                >
+                  USA Technical Sales: +1 (408) 836-6751
                 </a>
               </li>
               <li>
@@ -98,21 +108,19 @@ export default function Footer() {
                   href="tel:+14084648007"
                   className="hover:text-dm-accent transition-colors duration-200"
                 >
-                  USA HQ: +1 (408) 464-8007
+                  USA Headquarters: +1 (408) 464-8007
                 </a>
               </li>
             </ul>
 
             <div className="pt-2">
-              <h5 className="text-xs font-semibold uppercase tracking-wider text-dm-steel mb-2">
+              <h5 className="text-sm font-semibold uppercase tracking-wider text-dm-white mb-2">
                 Global Offices
               </h5>
               <ul className="space-y-1">
-                {OFFICES.map(({ region, city }) => (
-                  <li key={region} className="text-xs text-dm-gray">
-                    <span className="text-dm-gray-light">{region}</span>
-                    {" - "}
-                    {city}
+                {OFFICES.map((office) => (
+                  <li key={office} className="text-xs text-dm-gray whitespace-pre-line">
+                    {office}
                   </li>
                 ))}
               </ul>
@@ -125,20 +133,20 @@ export default function Footer() {
       <div className="border-t border-dm-slate/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-dm-gray">
-            &copy; 2026 Deep Materials. All rights reserved.
+            &copy; 2026 Deep Materials Inc. All rights reserved.
           </p>
           <div className="flex items-center gap-4 text-xs text-dm-gray">
             <Link
-              href="/contact"
+              href="/privacy"
               className="hover:text-dm-accent transition-colors duration-200"
             >
               Privacy Policy
             </Link>
             <Link
-              href="/contact"
+              href="/terms"
               className="hover:text-dm-accent transition-colors duration-200"
             >
-              Terms of Service
+              Terms of Use
             </Link>
           </div>
         </div>
