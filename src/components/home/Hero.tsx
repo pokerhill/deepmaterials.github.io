@@ -63,7 +63,7 @@ const itemVariants = {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-dm-midnight">
+    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-dm-midnight pt-16">
       {/* Background image */}
       <div className="absolute inset-0">
         <img
@@ -96,7 +96,7 @@ export default function Hero() {
         animate="visible"
       >
         <motion.h1
-          className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight"
+          className="text-3xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-tight"
           variants={itemVariants}
         >
           <span className="text-dm-white">Thermal Materials</span>
