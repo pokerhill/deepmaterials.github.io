@@ -34,9 +34,10 @@ body {
   background: #00B4D8;
 }
 
-/* Smooth scroll */
+/* Smooth scroll + prevent iOS Safari horizontal overflow */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* Glass effect utility */

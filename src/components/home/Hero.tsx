@@ -96,7 +96,7 @@ export default function Hero() {
         animate="visible"
       >
         <motion.h1
-          className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight"
+          className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight"
           variants={itemVariants}
         >
           <span className="text-dm-white">Thermal Materials</span>
