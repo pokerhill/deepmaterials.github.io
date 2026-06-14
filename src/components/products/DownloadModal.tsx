@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   validateEmail,
@@ -19,6 +19,7 @@ interface DownloadModalProps {
   readonly onClose: () => void;
   readonly productName: string;
   readonly pdfPath: string;
+  readonly pdfFiles?: ReadonlyArray<DownloadFile>;
 }
 
 interface FormErrors {
@@ -27,11 +28,17 @@ interface FormErrors {
   readonly general?: string;
 }
 
+export interface DownloadFile {
+  readonly name: string;
+  readonly path: string;
+}
+
 export default function DownloadModal({
   isOpen,
   onClose,
   productName,
   pdfPath,
+  pdfFiles,
 }: DownloadModalProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -85,15 +92,36 @@ export default function DownloadModal({
   );
 
   const triggerDownload = useCallback(
-    (downloadPath: string) => {
+    ({ name: downloadName, path: downloadPath }: DownloadFile) => {
       const anchor = document.createElement("a");
       anchor.href = downloadPath;
-      anchor.download = `${productName}-datasheet.pdf`;
+      anchor.download = `${downloadName}-datasheet.pdf`;
       document.body.appendChild(anchor);
       anchor.click();
       document.body.removeChild(anchor);
     },
-    [productName]
+    []
+  );
+
+  const triggerDownloads = useCallback(
+    async (files: ReadonlyArray<DownloadFile>) => {
+      for (const file of files) {
+        triggerDownload(file);
+
+        // Browsers can collapse simultaneous programmatic downloads into a
+        // single file. Give each selected datasheet its own download action.
+        await new Promise((resolve) => setTimeout(resolve, 300));
+      }
+    },
+    [triggerDownload],
+  );
+
+  const downloadFiles = useMemo(
+    () =>
+      pdfFiles && pdfFiles.length > 0
+        ? pdfFiles
+        : [{ name: productName, path: pdfPath }],
+    [pdfFiles, productName, pdfPath],
   );
 
   const handleSubmit = useCallback(
@@ -139,25 +167,25 @@ export default function DownloadModal({
         sendDownloadNotification({
           name: name.trim(),
           email: email.trim(),
-          product: productName,
+          product: downloadFiles.map((file) => file.name).join(", "),
           timestamp: new Date().toISOString(),
         }).catch(() => {
           // Silently ignore - email notification is best-effort
         });
 
         recordDownloadAttempt();
-        triggerDownload(pdfPath);
+        await triggerDownloads(downloadFiles);
         onClose();
       } catch {
         // Even if something unexpected happens, still try the download
         recordDownloadAttempt();
-        triggerDownload(pdfPath);
+        await triggerDownloads(downloadFiles);
         onClose();
       } finally {
         setIsSubmitting(false);
       }
     },
-    [name, email, productName, pdfPath, onClose, triggerDownload]
+    [name, email, downloadFiles, onClose, triggerDownloads]
   );
 
   return (
@@ -217,7 +245,8 @@ export default function DownloadModal({
               </h2>
               <p className="mt-1 text-sm text-dm-steel">
                 Enter your details to download the{" "}
-                <span className="text-dm-accent">{productName}</span> datasheet.
+                <span className="text-dm-accent">{productName}</span>{" "}
+                {downloadFiles.length === 1 ? "datasheet." : "datasheets."}
               </p>
             </div>
 
@@ -314,7 +343,9 @@ export default function DownloadModal({
                     Processing...
                   </span>
                 ) : (
-                  "Download PDF"
+                  downloadFiles.length === 1
+                    ? "Download PDF"
+                    : `Download ${downloadFiles.length} PDFs`
                 )}
               </button>
             </form>

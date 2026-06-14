@@ -1,5 +1,5 @@
 const RATE_LIMIT_KEY = 'dm_download_attempts';
-const MAX_ATTEMPTS = 5;
+const MAX_ATTEMPTS_PER_HOUR = 15;
 const WINDOW_MS = 60 * 60 * 1000; // 1 hour
 
 interface RateLimitEntry {
@@ -30,7 +30,7 @@ export function checkRateLimit(): { allowed: boolean; remainingAttempts: number;
   // Filter to only timestamps within the current window
   const validTimestamps = entry.timestamps.filter((t) => now - t < WINDOW_MS);
 
-  if (validTimestamps.length >= MAX_ATTEMPTS) {
+  if (validTimestamps.length >= MAX_ATTEMPTS_PER_HOUR) {
     const oldestInWindow = Math.min(...validTimestamps);
     const resetInMs = WINDOW_MS - (now - oldestInWindow);
     return {
@@ -42,7 +42,7 @@ export function checkRateLimit(): { allowed: boolean; remainingAttempts: number;
 
   return {
     allowed: true,
-    remainingAttempts: MAX_ATTEMPTS - validTimestamps.length,
+    remainingAttempts: MAX_ATTEMPTS_PER_HOUR - validTimestamps.length,
     resetInMs: 0,
   };
 }
