@@ -126,7 +126,7 @@ export default function Hero() {
             href="/contact"
             className="px-8 py-3.5 rounded-lg border border-dm-accent text-dm-accent font-semibold text-lg hover:bg-dm-accent/10 transition-colors duration-300"
           >
-            Contact Us
+            Contact Applications Engineering
           </Link>
         </motion.div>
 
@@ -138,7 +138,8 @@ export default function Hero() {
             href="/products/fleximetal/"
             className="px-8 py-3.5 rounded-lg border border-dm-accent bg-dm-midnight/35 text-dm-accent font-semibold text-lg hover:bg-dm-accent/10 transition-colors duration-300"
           >
-            Explore Flagship FlexiMetal 35 W/mK
+            Explore Flagship FlexiMetal{" "}
+            <span className="text-[#FF4D4D]">35 W/mK</span>
           </Link>
         </motion.div>
       </motion.div>

@@ -45,6 +45,7 @@ const gapPadProducts = getProductsBySlug([
 ]);
 const lowOilBleedPadProducts = getProductsBySlug(["tcg-lo-series"]);
 const pottingProducts = getProductsBySlug(["potting-materials"]);
+const hcaProducts = getProductsBySlug(["hca"]);
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -261,6 +262,23 @@ export default function ProductsPage() {
             viewport={{ once: true, margin: "-50px" }}
           >
             {pottingProducts.map((product) => (
+              <ProductCard key={product.slug} product={product} />
+            ))}
+          </motion.div>
+        </div>
+
+        {/* HCA */}
+        <div className="mt-10">
+          <ProductGroupHeader label="High Conductivity Adhesive Tape" />
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            {hcaProducts.map((product) => (
               <ProductCard key={product.slug} product={product} />
             ))}
           </motion.div>

@@ -74,7 +74,7 @@ function StatCard({ stat, index }: { stat: StatItem; index: number }) {
 
 export default function Stats() {
   return (
-    <section className="relative py-20 bg-dm-midnight">
+    <section className="relative pt-10 pb-20 bg-dm-midnight">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
