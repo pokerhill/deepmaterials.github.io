@@ -2,6 +2,7 @@ import Hero from "@/components/home/Hero";
 import Stats from "@/components/home/Stats";
 import DeepInsideAI from "@/components/home/DeepInsideAI";
 import ProductHighlights from "@/components/home/ProductHighlights";
+import Whitepapers from "@/components/home/Whitepapers";
 import Industries from "@/components/home/Industries";
 import CTA from "@/components/home/CTA";
 
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Hero />
       <Stats />
       <ProductHighlights />
+      <Whitepapers />
       <Industries />
       <CTA />
     </>

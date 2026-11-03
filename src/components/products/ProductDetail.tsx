@@ -21,7 +21,7 @@ interface ProductDetailProps {
   readonly product: ProductCategory;
 }
 
-const FLEXIMETAL_RED = "text-[#FF4D4D]";
+const FLEXIMETAL_RED = "text-dm-red";
 const FLEXIMETAL_MARK = `${FLEXIMETAL_RED} ml-[1px] align-super text-[0.32em] font-semibold leading-none`;
 const FLEXIMETAL_SLUG = "fleximetal";
 
@@ -125,10 +125,13 @@ function getSpecialtySortValue(attribute: string) {
 
 export default function ProductDetail({ product }: ProductDetailProps) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [selectedFleximetalFile, setSelectedFleximetalFile] =
+    useState<DownloadFile | null>(null);
   const [selectedVariantModels, setSelectedVariantModels] = useState<
     ReadonlySet<string>
   >(new Set());
   const isSpecialtyGapPad = product.slug === SPECIALTY_GAP_PAD_SLUG;
+  const isFleximetal = product.slug === FLEXIMETAL_SLUG;
   const isSinglePartGapFiller = product.slug === SINGLE_PART_GAP_FILLER_SLUG;
   const isTcgLoSeries = product.slug === TCG_LO_SERIES_SLUG;
   const isTwoPartGapFiller = product.slug === TWO_PART_GAP_FILLER_SLUG;
@@ -275,8 +278,10 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             <p className="text-lg text-dm-gray leading-relaxed">
               <ProductDescription product={product} />
             </p>
-            <p className="mt-5 text-lg font-semibold text-[#FF4D4D]">
-              Contact us for custom formulations.
+            <p className="mt-5 text-lg font-semibold text-dm-red">
+              {product.slug === FLEXIMETAL_SLUG
+                ? "Contact us for samples."
+                : "Contact us for custom formulations."}
             </p>
             <Link
               href="/contact#contact-form"
@@ -359,6 +364,47 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           </motion.div>
         )}
 
+        {isFleximetal && (
+          <motion.div
+            className="mb-10"
+            custom={3}
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+          >
+            <h2 className="mb-4 text-2xl font-semibold text-dm-white">
+              Metallic Performance Without Liquid-Metal Risk
+            </h2>
+            <div className="space-y-4 text-base leading-relaxed text-dm-gray-light">
+              <p>
+                FlexiMetal 35 is a patented, non-organic metallic TIM—not a
+                free-flowing liquid metal. Its engineered, extremely
+                high-viscosity structure conforms to die warpage and surface
+                variation under assembly pressure, then remains stable in
+                place. Available as a preformed foil or screen-printable paste,
+                FlexiMetal delivers 35 W/m·K thermal conductivity while
+                reducing the leakage, migration, electrical-shorting and
+                containment risks associated with conventional liquid-metal
+                TIMs.
+              </p>
+              <p>
+                <strong className="font-semibold text-dm-white">
+                  FlexiMetal 35 Foil:
+                </strong>{" "}
+                A ready-to-place format designed for simplified handling,
+                pre-attachment and consistent assembly.
+              </p>
+              <p>
+                <strong className="font-semibold text-dm-white">
+                  FlexiMetal 35 Paste:
+                </strong>{" "}
+                A highly viscous, shear-thinning format for screen printing,
+                customizable coverage and complex surface geometries.
+              </p>
+            </div>
+          </motion.div>
+        )}
+
         {/* Variants Table */}
         <motion.div
           className="mb-10"
@@ -383,6 +429,11 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                         onChange={toggleAllSpecialtyVariants}
                         className="h-4 w-4 rounded border-dm-slate bg-dm-midnight text-dm-accent focus:ring-dm-accent/40"
                       />
+                    </th>
+                  )}
+                  {isFleximetal && (
+                    <th className="px-4 py-3 font-semibold text-dm-gray whitespace-nowrap">
+                      Datasheet
                     </th>
                   )}
                   {hasSpecialtyAttributeColumn ? (
@@ -440,6 +491,25 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                             onChange={() => toggleSpecialtyVariant(variant)}
                             className="h-4 w-4 rounded border-dm-slate bg-dm-midnight text-dm-accent focus:ring-dm-accent/40 disabled:opacity-30"
                           />
+                        </td>
+                      )}
+                      {isFleximetal && (
+                        <td className="px-4 py-3 whitespace-nowrap">
+                          {variant.pdfFile && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setSelectedFleximetalFile({
+                                  name: variant.model,
+                                  path: variant.pdfFile as string,
+                                });
+                                setModalOpen(true);
+                              }}
+                              className="font-semibold text-dm-accent transition-colors hover:text-dm-accent-light"
+                            >
+                              Download datasheet
+                            </button>
+                          )}
                         </td>
                       )}
                       {hasSpecialtyAttributeColumn ? (
@@ -514,7 +584,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         </motion.div>
 
         {/* Download Button */}
-        {product.pdfFile && (
+        {product.pdfFile && !isFleximetal && (
           <motion.div
             custom={5}
             variants={fadeUp}
@@ -557,8 +627,8 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         <DownloadModal
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
-          productName={product.name}
-          pdfPath={product.pdfFile}
+          productName={selectedFleximetalFile?.name ?? product.name}
+          pdfPath={selectedFleximetalFile?.path ?? product.pdfFile}
           pdfFiles={isSpecialtyGapPad ? selectedSpecialtyFiles : undefined}
         />
       )}

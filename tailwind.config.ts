@@ -18,13 +18,14 @@ const config: Config = {
           accent: '#00B4D8',       // electric cyan
           'accent-light': '#48CAE4',
           'accent-dark': '#0077B6',
+          red: '#FF4D4D',
           glow: '#90E0EF',
           white: '#F0F4F8',
           gray: '#8892A4',
           'gray-light': '#C4CBD8',
           success: '#10B981',
           warning: '#F59E0B',
-          danger: '#EF4444',
+          danger: '#FF4D4D',
         },
       },
       fontFamily: {

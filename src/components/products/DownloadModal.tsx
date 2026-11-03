@@ -273,7 +273,7 @@ export default function DownloadModal({
                   aria-describedby={errors.name ? "name-error" : undefined}
                 />
                 {errors.name && (
-                  <p id="name-error" className="mt-1 text-xs text-red-400">
+                  <p id="name-error" className="mt-1 text-xs text-dm-red">
                     {errors.name}
                   </p>
                 )}
@@ -299,7 +299,7 @@ export default function DownloadModal({
                   aria-describedby={errors.email ? "email-error" : undefined}
                 />
                 {errors.email && (
-                  <p id="email-error" className="mt-1 text-xs text-red-400">
+                  <p id="email-error" className="mt-1 text-xs text-dm-red">
                     {errors.email}
                   </p>
                 )}
@@ -307,8 +307,8 @@ export default function DownloadModal({
 
               {/* General error */}
               {errors.general && (
-                <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3">
-                  <p className="text-sm text-red-400">{errors.general}</p>
+                <div className="rounded-lg border border-dm-red/30 bg-dm-red/10 px-4 py-3">
+                  <p className="text-sm text-dm-red">{errors.general}</p>
                 </div>
               )}
 

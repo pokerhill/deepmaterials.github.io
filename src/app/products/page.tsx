@@ -64,7 +64,7 @@ const cardVariants = {
   },
 };
 
-const FLEXIMETAL_RED = "text-[#FF4D4D]";
+const FLEXIMETAL_RED = "text-dm-red";
 const FLEXIMETAL_MARK = `${FLEXIMETAL_RED} ml-[1px] align-super text-[0.32em] font-semibold leading-none`;
 const FLEXIMETAL_SLUG = "fleximetal";
 

@@ -87,7 +87,11 @@ export default function ProductHighlights() {
                 </div>
                 <div className="p-6">
                 <h3 className="text-xl font-semibold text-dm-white group-hover:text-dm-accent transition-colors duration-300">
-                  {product.name}
+                  {product.slug === FLEXIMETAL_SLUG ? (
+                    <span className="text-dm-red">FlexiMetal</span>
+                  ) : (
+                    product.name
+                  )}
                 </h3>
                 <p className="mt-3 text-dm-gray text-sm leading-relaxed line-clamp-3">
                   {product.description}

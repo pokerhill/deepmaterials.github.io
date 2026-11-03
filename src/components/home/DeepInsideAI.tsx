@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 const materialHighlights = [
   {
     name: "FlexiMetal™",
@@ -23,10 +25,9 @@ const materialHighlights = [
 
 const leaderReasons = [
   "Proven at hyperscale",
-  "Enterprise SSD market leadership",
-  "Next-generation metallic TIM technology",
   "Global manufacturing footprint",
   "Engineering support from concept through production",
+  "Next-generation metallic TIM technology",
 ] as const;
 
 const trustedApplications = [
@@ -37,7 +38,7 @@ const trustedApplications = [
   "Networking and Optical Modules",
 ] as const;
 
-function AccentListItem({ children }: { readonly children: string }) {
+function AccentListItem({ children }: { readonly children: ReactNode }) {
   return (
     <li className="flex gap-3 text-sm sm:text-base leading-relaxed text-dm-gray-light">
       <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-dm-accent" />
@@ -90,9 +91,23 @@ export default function DeepInsideAI() {
             </h3>
             <ul className="mt-6 space-y-4">
               {leaderReasons.map((reason) => (
-                <AccentListItem key={reason}>{reason}</AccentListItem>
+                <AccentListItem key={reason}>
+                  {reason === "Next-generation metallic TIM technology" ? (
+                    <>
+                      Next-generation{" "}
+                      <span className="text-dm-red">metallic TIM</span>{" "}
+                      technology
+                    </>
+                  ) : (
+                    reason
+                  )}
+                </AccentListItem>
               ))}
             </ul>
+            <p className="mt-6 leading-relaxed text-dm-gray-light">
+              Our technologies are deployed in millions of devices powering the
+              world&apos;s most demanding compute environments.
+            </p>
           </div>
 
           <div className="lg:pl-2">
@@ -108,10 +123,6 @@ export default function DeepInsideAI() {
                 <AccentListItem key={application}>{application}</AccentListItem>
               ))}
             </ul>
-            <p className="mt-6 leading-relaxed text-dm-gray-light">
-              Our technologies are deployed in millions of devices powering the
-              world&apos;s most demanding compute environments.
-            </p>
           </div>
         </div>
       </div>

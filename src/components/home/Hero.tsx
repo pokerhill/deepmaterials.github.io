@@ -139,7 +139,7 @@ export default function Hero() {
             className="px-8 py-3.5 rounded-lg border border-dm-accent bg-dm-midnight/35 text-dm-accent font-semibold text-lg hover:bg-dm-accent/10 transition-colors duration-300"
           >
             Explore Flagship FlexiMetal{" "}
-            <span className="text-[#FF4D4D]">35 W/mK</span>
+            <span className="text-dm-red">35 W/mK</span>
           </Link>
         </motion.div>
       </motion.div>
